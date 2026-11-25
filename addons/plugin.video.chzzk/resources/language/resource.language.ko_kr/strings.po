@@ -1,0 +1,85 @@
+# Kodi Media Center language file
+# Addon Name: CHZZK
+# Addon id: plugin.video.chzzk
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko_KR\n"
+
+msgctxt "#32001"
+msgid "Account (optional)"
+msgstr "계정 (선택)"
+
+msgctxt "#32002"
+msgid "NID_AUT cookie"
+msgstr "NID_AUT 쿠키"
+
+msgctxt "#32003"
+msgid "The NID_AUT cookie of naver.com after logging in to chzzk.naver.com in a browser (developer tools → Application → Cookies). Leave empty to watch without logging in."
+msgstr "브라우저에서 chzzk.naver.com에 로그인한 뒤 naver.com의 NID_AUT 쿠키 값입니다(개발자 도구 → 애플리케이션 → 쿠키). 비워 두면 로그인 없이 봅니다."
+
+msgctxt "#32004"
+msgid "NID_SES cookie"
+msgstr "NID_SES 쿠키"
+
+msgctxt "#32005"
+msgid "The NID_SES cookie, from the same place. Both are needed."
+msgstr "같은 곳의 NID_SES 쿠키 값입니다. 두 값이 모두 있어야 합니다."
+
+msgctxt "#32006"
+msgid "With both cookies the followed channels appear, and age-restricted streams play for an adult-verified account. The cookies log in as you: keep them to yourself. Logging out of naver.com ends them."
+msgstr "두 쿠키를 넣으면 팔로우한 채널이 보이고, 성인 인증한 계정이면 연령 제한 방송도 재생됩니다. 쿠키는 내 계정으로 로그인하는 값이니 남에게 보이지 마세요. naver.com에서 로그아웃하면 쓸 수 없게 됩니다."
+
+msgctxt "#32010"
+msgid "Popular lives"
+msgstr "인기 라이브"
+
+msgctxt "#32011"
+msgid "Search lives"
+msgstr "라이브 검색"
+
+msgctxt "#32012"
+msgid "Search channels"
+msgstr "채널 검색"
+
+msgctxt "#32013"
+msgid "Followed channels"
+msgstr "팔로우 채널"
+
+msgctxt "#32030"
+msgid "%d watching"
+msgstr "%d명 시청 중"
+
+msgctxt "#32031"
+msgid "Go to the channel"
+msgstr "채널로 가기"
+
+msgctxt "#32032"
+msgid "Next page"
+msgstr "다음 페이지"
+
+msgctxt "#32033"
+msgid "Search"
+msgstr "검색"
+
+msgctxt "#32040"
+msgid "The channel is not live"
+msgstr "방송 중이 아닙니다"
+
+msgctxt "#32041"
+msgid "Age-restricted: needs the NID cookies of an adult-verified account"
+msgstr "연령 제한 방송입니다. 성인 인증한 계정의 NID 쿠키가 필요합니다"
+
+msgctxt "#32042"
+msgid "The NID cookies are missing or have expired"
+msgstr "NID 쿠키가 없거나 만료되었습니다"
+
+msgctxt "#32043"
+msgid "CHZZK did not answer: %s"
+msgstr "치지직이 응답하지 않습니다: %s"
+
+msgctxt "#32044"
+msgid "CHZZK refused: %s"
+msgstr "치지직이 거부했습니다: %s"
+

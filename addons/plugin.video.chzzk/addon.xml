@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.chzzk" name="CHZZK" version="0.1.0" provider-name="kodi-extras">
+  <requires>
+    <import addon="xbmc.python" version="3.0.1"/>
+    <import addon="inputstream.adaptive" version="19.0.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">CHZZK lives and videos</summary>
+    <summary lang="ko_KR">치지직 라이브와 동영상</summary>
+    <description lang="en_GB">Watch CHZZK (chzzk.naver.com) lives and videos: popular lives, live and channel search, and each channel's videos. No login needed. With the NID_AUT and NID_SES cookies of a naver.com session, also the followed channels and age-restricted streams. Unofficial; not affiliated with NAVER.</description>
+    <description lang="ko_KR">치지직(chzzk.naver.com)의 라이브와 동영상을 봅니다. 인기 라이브, 라이브·채널 검색, 채널별 동영상을 로그인 없이 볼 수 있습니다. naver.com 로그인의 NID_AUT, NID_SES 쿠키를 넣으면 팔로우한 채널과 연령 제한 방송도 볼 수 있습니다. 비공식 애드온이며 NAVER와 관계가 없습니다.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
