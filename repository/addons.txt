@@ -1,4 +1,3 @@
 # The add-ons in addons/ that the Kodi repository carries, one id per line.
 script.service.threadbridge
-service.atmos67
 plugin.video.chzzk
