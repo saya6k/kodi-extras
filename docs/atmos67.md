@@ -57,7 +57,7 @@ sudo apt install ./atmos67_<버전>_armhf.deb   # alsa-utils, linuxptp, ethtool�
 
 패키지는 `snd-aloop` 모듈을 올리고 서비스 세 개를 켭니다. 그다음 Kodi에서 다음 순서로 진행합니다.
 
-1. 애드온을 설치합니다. kodi-extras 저장소에서 설치하거나, `service.atmos67-<버전>.zip`을 zip 파일로 설치합니다.
+1. 빌드에서 나온 `service.atmos67-<버전>.zip`을 zip 파일로 설치합니다. atmos67 소스를 공개하기 전까지는 패키지를 릴리스하지 않으므로, 애드온도 kodi-extras 저장소에 넣지 않았습니다.
 2. 애드온 설정에서 스피커 배치, 네트워크 인터페이스, 멀티캐스트 주소, PTP 도메인을 고릅니다. 바꾸면 서비스가 다시 시작됩니다.
 3. 애드온 설정의 "Kodi 오디오 출력을 atmos67로 설정"을 실행합니다. 오디오 출력과 패스스루 장치가 `atmos67 (AES67)`로 바뀌고 패스스루가 켜집니다. 장치가 목록에 보이려면 Kodi를 다시 시작해야 할 수 있습니다.
 
