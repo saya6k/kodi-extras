@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.kodiextras" name="kodi-extras" version="1.0.0" provider-name="kodi-extras">
+  <extension point="xbmc.addon.repository" name="kodi-extras">
+    <dir>
+      <info compressed="false">@BASE_URL@/addons.xml</info>
+      <checksum>@BASE_URL@/addons.xml.md5</checksum>
+      <datadir zip="true">@BASE_URL@</datadir>
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">kodi-extras add-ons</summary>
+    <summary lang="ko_KR">kodi-extras 애드온</summary>
+    <description lang="en_GB">Installs and updates the kodi-extras add-ons, such as threadbridge.</description>
+    <description lang="ko_KR">threadbridge 등 kodi-extras 애드온을 설치하고 업데이트합니다.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
