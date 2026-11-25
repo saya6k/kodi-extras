@@ -66,6 +66,11 @@ class RepositoryTest(unittest.TestCase):
             entry.tail = None
             self.assertEqual(ET.tostring(inside), ET.tostring(entry))
 
+    def test_index_links_the_repository_zip(self):
+        page = self.get(self.base + "/").decode("utf-8")
+        self.assertIn('<a href="repository.kodiextras-1.0.0.zip">', page)
+        self.get(self.base + "/repository.kodiextras-1.0.0.zip")
+
     def test_no_placeholder_or_junk_left(self):
         with open(os.path.join(self.out, "addons.xml"), encoding="utf-8") as file:
             self.assertNotIn("@BASE_URL@", file.read())

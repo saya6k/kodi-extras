@@ -6,10 +6,13 @@
 dist/repo holds addons.xml and its md5, <id>/<id>-<version>.zip for every
 add-on in repository/addons.txt and for repository.kodiextras itself, and
 repository.kodiextras-<version>.zip at the top for the first install from a
-zip file.
+zip file, with an index.html that links it: Kodi's file manager reads the
+links of an HTML page as a folder, where a host such as GitHub Pages lists
+no directories.
 """
 
 import hashlib
+import html
 import os
 import shutil
 import sys
@@ -83,6 +86,7 @@ def build(base_url, out):
             zip_addon(addon_dir, addon_id, zip_path)
             if addon_id == REPOSITORY_ID:
                 shutil.copy(zip_path, out)
+                repository_zip = os.path.basename(zip_path)
             bodies.append(addon_xml_body(addon_dir))
             zips.append(zip_path)
 
@@ -91,7 +95,15 @@ def build(base_url, out):
         file.write(addons)
     with open(os.path.join(out, "addons.xml.md5"), "w", encoding="utf-8") as file:
         file.write(hashlib.md5(addons.encode("utf-8")).hexdigest())
+    with open(os.path.join(out, "index.html"), "w", encoding="utf-8") as file:
+        file.write(index_html(repository_zip))
     return zips
+
+
+def index_html(repository_zip):
+    name = html.escape(repository_zip)
+    return (f'<!doctype html>\n<html><head><meta charset="utf-8"><title>kodi-extras</title></head>\n'
+            f'<body><a href="{name}">{name}</a></body></html>\n')
 
 
 def main(argv):
