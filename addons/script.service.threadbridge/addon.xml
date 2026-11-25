@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.service.threadbridge" name="threadbridge" version="0.1.0" provider-name="kodi-extras">
+  <requires>
+    <import addon="xbmc.python" version="3.0.1"/>
+  </requires>
+  <extension point="xbmc.service" library="service.py"/>
+  <extension point="xbmc.python.script" library="default.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Thread border router on a USB dongle</summary>
+    <summary lang="ko_KR">USB 동글로 쓰는 Thread 보더 라우터</summary>
+    <description lang="en_GB">Settings and network management for the threadbridge service, which runs an OpenThread border router (OTBR) on an 802.15.4 USB dongle with RCP firmware, for Home Assistant, Apple Home and Google Home. Requires the threadbridge package (.deb) to be installed on OSMC.</description>
+    <description lang="ko_KR">RCP 펌웨어를 올린 802.15.4 USB 동글로 OpenThread 보더 라우터(OTBR)를 돌리는 threadbridge 서비스의 설정과 네트워크 관리입니다. Home Assistant, Apple Home, Google Home과 함께 쓸 수 있습니다. OSMC에 threadbridge 패키지(.deb)가 설치돼 있어야 합니다.</description>
+    <platform>linux</platform>
+  </extension>
+</addon>

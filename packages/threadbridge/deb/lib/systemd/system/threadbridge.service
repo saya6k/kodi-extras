@@ -1,0 +1,16 @@
+[Unit]
+Description=threadbridge: Thread border router (otbr-agent)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=/etc/threadbridge/threadbridge.conf
+EnvironmentFile=-/home/osmc/.kodi/userdata/addon_data/script.service.threadbridge/threadbridge.conf
+ExecStart=/usr/lib/threadbridge/threadbridge-run
+ExecStopPost=/usr/lib/threadbridge/threadbridge-firewall stop
+KillMode=mixed
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

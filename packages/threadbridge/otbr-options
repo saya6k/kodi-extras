@@ -1,0 +1,31 @@
+# The otbr-agent build options, shared by build.sh and the integration test.
+# The mDNS publisher is OpenThread's own: it opens 5353 with SO_REUSEPORT, so
+# it runs beside the avahi-daemon OSMC already has, and needs no mDNSResponder.
+# D-Bus is off; the add-on talks to the REST API.
+OTBR_OPTIONS="
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_INSTALL_PREFIX=/usr
+    -DBUILD_TESTING=OFF
+    -DOTBR_MDNS=openthread
+    -DOTBR_DBUS=OFF
+    -DOTBR_REST=ON
+    -DCPPHTTPLIB_REQUEST_URI_MAX_LENGTH=2048
+    -DOTBR_BORDER_ROUTING=ON
+    -DOTBR_BACKBONE_ROUTER=ON
+    -DOTBR_NAT64=ON
+    -DOTBR_TREL=ON
+    -DOTBR_WEB=OFF
+    -DOTBR_INFRA_IF_NAME=eth0
+    -DOTBR_VENDOR_NAME=kodi-extras
+    -DOTBR_PRODUCT_NAME=threadbridge
+"
+OTBR_TAG=v2026.11.0
+OTBR_SRC=build/ot-br-posix
+
+fetch_otbr() {
+    if [ ! -d "$OTBR_SRC" ]; then
+        git clone -q --depth 1 -b "$OTBR_TAG" --recurse-submodules --shallow-submodules \
+            https://github.com/openthread/ot-br-posix "$OTBR_SRC"
+    fi
+}

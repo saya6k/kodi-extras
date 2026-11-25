@@ -1,0 +1,49 @@
+#!/bin/sh
+# Prepares the host for otbr-agent and runs it with the settings systemd
+# passes in the environment (see /etc/threadbridge/threadbridge.conf).
+set -eu
+
+die() {
+    echo "threadbridge: $*" >&2
+    exit 1
+}
+
+device=${RADIO_DEVICE:-}
+if [ -z "$device" ]; then
+    for candidate in /dev/serial/by-id/*; do
+        [ -e "$candidate" ] && device=$candidate && break
+    done
+fi
+[ -n "$device" ] || die "no dongle found in /dev/serial/by-id; plug it in or set RADIO_DEVICE"
+[ -e "$device" ] || die "$device does not exist"
+
+backbone=${BACKBONE_IF:-eth0}
+[ -d "/sys/class/net/$backbone" ] || die "network interface $backbone does not exist"
+
+radio="spinel+hdlc+uart://$device?uart-baudrate=${RADIO_BAUDRATE:-460800}"
+[ "${RADIO_FLOW_CONTROL:-0}" = 1 ] && radio="$radio&uart-flow-control"
+
+[ -c /dev/net/tun ] || modprobe tun || die "the kernel has no TUN device"
+
+# Forwarding makes Linux ignore router advertisements unless accept_ra is 2,
+# and the border routing manager needs the routes they carry (RIO up to /64).
+sysctl -q -w net.ipv6.conf.all.forwarding=1
+sysctl -q -w "net.ipv6.conf.$backbone.accept_ra=2"
+sysctl -q -w "net.ipv6.conf.$backbone.accept_ra_rt_info_max_plen=64" 2>/dev/null \
+    || echo "threadbridge: the kernel ignores route information options; Thread devices may not reach other networks" >&2
+
+if [ "${FIREWALL:-1}" = 1 ]; then
+    /usr/lib/threadbridge/threadbridge-firewall start \
+        || die "could not set up the ingress filter (ipset, ip6tables); set FIREWALL=0 to run without it"
+fi
+if [ "${NAT64:-1}" = 1 ]; then
+    sysctl -q -w net.ipv4.ip_forward=1
+    /usr/lib/threadbridge/threadbridge-firewall nat44 \
+        || echo "threadbridge: could not set up NAT44; Thread devices cannot reach IPv4 hosts" >&2
+fi
+
+exec /usr/sbin/otbr-agent -I wpan0 -B "$backbone" \
+    -d "${DEBUG_LEVEL:-5}" \
+    --rest-listen-address "${REST_ADDRESS:-127.0.0.1}" \
+    --rest-listen-port "${REST_PORT:-8081}" \
+    "$radio" "trel://$backbone"

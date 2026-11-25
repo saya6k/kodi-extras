@@ -1,0 +1,273 @@
+# Kodi Media Center language file
+# Addon Name: threadbridge
+# Addon id: script.service.threadbridge
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko_KR\n"
+
+msgctxt "#32001"
+msgid "Dongle"
+msgstr "동글"
+
+msgctxt "#32002"
+msgid "Network"
+msgstr "네트워크"
+
+msgctxt "#32003"
+msgid "Thread network"
+msgstr "Thread 네트워크"
+
+msgctxt "#32010"
+msgid "Serial device"
+msgstr "시리얼 장치"
+
+msgctxt "#32011"
+msgid "The dongle's device in /dev/serial/by-id. Empty: the first dongle found."
+msgstr "/dev/serial/by-id에 있는 동글의 장치입니다. 비워 두면 처음 찾은 동글을 씁니다."
+
+msgctxt "#32012"
+msgid "Choose the dongle"
+msgstr "동글 고르기"
+
+msgctxt "#32013"
+msgid "Baud rate"
+msgstr "보드레이트"
+
+msgctxt "#32014"
+msgid "The RCP firmware's serial speed. Home Assistant Connect ZBT-1/SkyConnect and Sonoff ZBDongle-E: 460800. nRF52840 dongles: 115200."
+msgstr "RCP 펌웨어의 시리얼 속도입니다. Home Assistant Connect ZBT-1/SkyConnect와 Sonoff ZBDongle-E는 460800, nRF52840 동글은 115200입니다."
+
+msgctxt "#32015"
+msgid "Hardware flow control"
+msgstr "하드웨어 흐름 제어"
+
+msgctxt "#32016"
+msgid "RTS/CTS flow control. On for ZBT-1/SkyConnect and ZBDongle-E, off for most nRF52840 dongles."
+msgstr "RTS/CTS 흐름 제어입니다. ZBT-1/SkyConnect와 ZBDongle-E는 켜고, nRF52840 동글은 대부분 끕니다."
+
+msgctxt "#32020"
+msgid "Backbone interface"
+msgstr "백본 인터페이스"
+
+msgctxt "#32021"
+msgid "The Ethernet or Wi-Fi interface the Thread network is routed to."
+msgstr "Thread 네트워크를 연결할 이더넷 또는 Wi-Fi 인터페이스입니다."
+
+msgctxt "#32022"
+msgid "Choose the interface"
+msgstr "인터페이스 고르기"
+
+msgctxt "#32023"
+msgid "REST API on the network"
+msgstr "REST API를 네트워크에 공개"
+
+msgctxt "#32024"
+msgid "Lets Home Assistant on another machine use this border router. The REST API has no authentication: anyone on the network can change the Thread network."
+msgstr "다른 기기의 Home Assistant가 이 보더 라우터를 쓸 수 있게 합니다. REST API에는 인증이 없어서 같은 네트워크의 누구나 Thread 네트워크를 바꿀 수 있습니다."
+
+msgctxt "#32025"
+msgid "REST API port"
+msgstr "REST API 포트"
+
+msgctxt "#32026"
+msgid "Home Assistant's Open Thread Border Router integration uses 8081."
+msgstr "Home Assistant의 Open Thread Border Router 통합은 8081을 씁니다."
+
+msgctxt "#32027"
+msgid "IPv4 access (NAT64)"
+msgstr "IPv4 접근 (NAT64)"
+
+msgctxt "#32028"
+msgid "Lets Thread devices reach IPv4 hosts such as cloud services."
+msgstr "Thread 기기가 클라우드 서비스 같은 IPv4 호스트에 닿을 수 있게 합니다."
+
+msgctxt "#32029"
+msgid "Ingress filter"
+msgstr "유입 필터"
+
+msgctxt "#32030"
+msgid "Keeps unsolicited traffic from the backbone out of the Thread network. Turn it off only if the kernel lacks ipset or ip6tables support."
+msgstr "백본에서 요청하지 않은 트래픽이 Thread 네트워크로 들어오지 못하게 합니다. 커널에 ipset이나 ip6tables 지원이 없을 때만 끕니다."
+
+msgctxt "#32040"
+msgid "Status"
+msgstr "상태"
+
+msgctxt "#32041"
+msgid "Form a new network"
+msgstr "새 네트워크 만들기"
+
+msgctxt "#32042"
+msgid "Join with a dataset"
+msgstr "dataset으로 합류"
+
+msgctxt "#32043"
+msgid "Export the dataset"
+msgstr "dataset 내보내기"
+
+msgctxt "#32044"
+msgid "Add a device (joiner)"
+msgstr "기기 추가 (joiner)"
+
+msgctxt "#32045"
+msgid "Creates a Thread network with random keys. To join Home Assistant's, Apple's or Google's network, use a dataset instead."
+msgstr "임의의 키로 Thread 네트워크를 만듭니다. Home Assistant, Apple, Google의 네트워크에 합류하려면 dataset을 씁니다."
+
+msgctxt "#32046"
+msgid "Joins an existing Thread network with its active operational dataset (TLVs in hex)."
+msgstr "기존 Thread 네트워크의 active operational dataset(16진 TLV)으로 합류합니다."
+
+msgctxt "#32047"
+msgid "Shows this network's dataset and saves it to dataset.txt in the add-on's data folder, to give to Home Assistant or another border router."
+msgstr "이 네트워크의 dataset을 보여 주고 애드온 데이터 폴더의 dataset.txt에 저장합니다. Home Assistant나 다른 보더 라우터에 넘길 때 씁니다."
+
+msgctxt "#32048"
+msgid "Lets a device join with its joiner passphrase (PSKd). Matter devices are added from their Matter app instead."
+msgstr "기기의 joiner 암호(PSKd)로 합류를 허용합니다. Matter 기기는 Matter 앱에서 추가합니다."
+
+msgctxt "#32100"
+msgid "Could not restart the threadbridge service"
+msgstr "threadbridge 서비스를 재시작하지 못했습니다"
+
+msgctxt "#32101"
+msgid "The threadbridge service does not answer. Check that the threadbridge package is installed and the dongle is plugged in."
+msgstr "threadbridge 서비스가 응답하지 않습니다. threadbridge 패키지가 설치돼 있고 동글이 꽂혀 있는지 확인하세요."
+
+msgctxt "#32102"
+msgid "No dongle found in /dev/serial/by-id."
+msgstr "/dev/serial/by-id에서 동글을 찾지 못했습니다."
+
+msgctxt "#32103"
+msgid "No network interface found."
+msgstr "네트워크 인터페이스를 찾지 못했습니다."
+
+msgctxt "#32104"
+msgid "Network name"
+msgstr "네트워크 이름"
+
+msgctxt "#32105"
+msgid "The network name must be 1 to 16 bytes."
+msgstr "네트워크 이름은 1~16바이트여야 합니다."
+
+msgctxt "#32106"
+msgid "Channel (11-26, empty: automatic)"
+msgstr "채널 (11~26, 비우면 자동)"
+
+msgctxt "#32107"
+msgid "This border router is already in a Thread network. Leave it? Devices in that network stay there."
+msgstr "이 보더 라우터는 이미 Thread 네트워크에 있습니다. 떠날까요? 그 네트워크의 기기들은 그대로 남습니다."
+
+msgctxt "#32108"
+msgid "Thread network formed"
+msgstr "Thread 네트워크를 만들었습니다"
+
+msgctxt "#32109"
+msgid "Dataset from"
+msgstr "dataset 가져올 곳"
+
+msgctxt "#32110"
+msgid "Type it in"
+msgstr "직접 입력"
+
+msgctxt "#32111"
+msgid "A text file"
+msgstr "텍스트 파일"
+
+msgctxt "#32112"
+msgid "Dataset (TLVs in hex)"
+msgstr "dataset (16진 TLV)"
+
+msgctxt "#32113"
+msgid "That is not a dataset in hex."
+msgstr "16진 dataset이 아닙니다."
+
+msgctxt "#32114"
+msgid "Joining the Thread network"
+msgstr "Thread 네트워크에 합류하는 중입니다"
+
+msgctxt "#32115"
+msgid "This border router is not in a Thread network."
+msgstr "이 보더 라우터는 Thread 네트워크에 들어 있지 않습니다."
+
+msgctxt "#32116"
+msgid "Saved to %s"
+msgstr "%s에 저장했습니다"
+
+msgctxt "#32117"
+msgid "Joiner passphrase (PSKd)"
+msgstr "joiner 암호 (PSKd)"
+
+msgctxt "#32118"
+msgid "A PSKd is 6 to 32 of 0-9 and A-Z, without I, O, Q and Z."
+msgstr "PSKd는 0-9와 A-Z(I, O, Q, Z 제외) 6~32자입니다."
+
+msgctxt "#32119"
+msgid "Device EUI-64 (empty: any device)"
+msgstr "기기 EUI-64 (비우면 모든 기기)"
+
+msgctxt "#32120"
+msgid "An EUI-64 is 16 hex digits."
+msgstr "EUI-64는 16진수 16자리입니다."
+
+msgctxt "#32121"
+msgid "The commissioner did not start. Is the border router in a network?"
+msgstr "커미셔너가 시작되지 않았습니다. 보더 라우터가 네트워크에 들어 있나요?"
+
+msgctxt "#32122"
+msgid "Start joining on the device now. It may join for %d seconds."
+msgstr "지금 기기에서 합류를 시작하세요. %d초 동안 합류할 수 있습니다."
+
+msgctxt "#32123"
+msgid "The border router refused: %s"
+msgstr "보더 라우터가 거부했습니다: %s"
+
+msgctxt "#32124"
+msgid "The channel must be 11 to 26."
+msgstr "채널은 11~26이어야 합니다."
+
+msgctxt "#32125"
+msgid "Automatic"
+msgstr "자동"
+
+msgctxt "#32130"
+msgid "Role"
+msgstr "역할"
+
+msgctxt "#32131"
+msgid "Network name"
+msgstr "네트워크 이름"
+
+msgctxt "#32132"
+msgid "Channel"
+msgstr "채널"
+
+msgctxt "#32133"
+msgid "PAN ID"
+msgstr "PAN ID"
+
+msgctxt "#32134"
+msgid "Extended PAN ID"
+msgstr "확장 PAN ID"
+
+msgctxt "#32135"
+msgid "Routers"
+msgstr "라우터 수"
+
+msgctxt "#32136"
+msgid "RLOC16"
+msgstr "RLOC16"
+
+msgctxt "#32137"
+msgid "Border agent"
+msgstr "보더 에이전트"
+
+msgctxt "#32138"
+msgid "RCP firmware"
+msgstr "RCP 펌웨어"
+
+msgctxt "#32139"
+msgid "Thread network status"
+msgstr "Thread 네트워크 상태"
+

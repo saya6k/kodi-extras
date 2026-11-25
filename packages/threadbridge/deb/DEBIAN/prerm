@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+if [ -d /run/systemd/system ]; then
+    systemctl stop threadbridge.service || true
+fi
+if [ "$1" = remove ] && [ -d /run/systemd/system ]; then
+    systemctl disable threadbridge.service || true
+fi

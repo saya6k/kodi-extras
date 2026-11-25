@@ -1,0 +1,273 @@
+# Kodi Media Center language file
+# Addon Name: threadbridge
+# Addon id: script.service.threadbridge
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+
+msgctxt "#32001"
+msgid "Dongle"
+msgstr ""
+
+msgctxt "#32002"
+msgid "Network"
+msgstr ""
+
+msgctxt "#32003"
+msgid "Thread network"
+msgstr ""
+
+msgctxt "#32010"
+msgid "Serial device"
+msgstr ""
+
+msgctxt "#32011"
+msgid "The dongle's device in /dev/serial/by-id. Empty: the first dongle found."
+msgstr ""
+
+msgctxt "#32012"
+msgid "Choose the dongle"
+msgstr ""
+
+msgctxt "#32013"
+msgid "Baud rate"
+msgstr ""
+
+msgctxt "#32014"
+msgid "The RCP firmware's serial speed. Home Assistant Connect ZBT-1/SkyConnect and Sonoff ZBDongle-E: 460800. nRF52840 dongles: 115200."
+msgstr ""
+
+msgctxt "#32015"
+msgid "Hardware flow control"
+msgstr ""
+
+msgctxt "#32016"
+msgid "RTS/CTS flow control. On for ZBT-1/SkyConnect and ZBDongle-E, off for most nRF52840 dongles."
+msgstr ""
+
+msgctxt "#32020"
+msgid "Backbone interface"
+msgstr ""
+
+msgctxt "#32021"
+msgid "The Ethernet or Wi-Fi interface the Thread network is routed to."
+msgstr ""
+
+msgctxt "#32022"
+msgid "Choose the interface"
+msgstr ""
+
+msgctxt "#32023"
+msgid "REST API on the network"
+msgstr ""
+
+msgctxt "#32024"
+msgid "Lets Home Assistant on another machine use this border router. The REST API has no authentication: anyone on the network can change the Thread network."
+msgstr ""
+
+msgctxt "#32025"
+msgid "REST API port"
+msgstr ""
+
+msgctxt "#32026"
+msgid "Home Assistant's Open Thread Border Router integration uses 8081."
+msgstr ""
+
+msgctxt "#32027"
+msgid "IPv4 access (NAT64)"
+msgstr ""
+
+msgctxt "#32028"
+msgid "Lets Thread devices reach IPv4 hosts such as cloud services."
+msgstr ""
+
+msgctxt "#32029"
+msgid "Ingress filter"
+msgstr ""
+
+msgctxt "#32030"
+msgid "Keeps unsolicited traffic from the backbone out of the Thread network. Turn it off only if the kernel lacks ipset or ip6tables support."
+msgstr ""
+
+msgctxt "#32040"
+msgid "Status"
+msgstr ""
+
+msgctxt "#32041"
+msgid "Form a new network"
+msgstr ""
+
+msgctxt "#32042"
+msgid "Join with a dataset"
+msgstr ""
+
+msgctxt "#32043"
+msgid "Export the dataset"
+msgstr ""
+
+msgctxt "#32044"
+msgid "Add a device (joiner)"
+msgstr ""
+
+msgctxt "#32045"
+msgid "Creates a Thread network with random keys. To join Home Assistant's, Apple's or Google's network, use a dataset instead."
+msgstr ""
+
+msgctxt "#32046"
+msgid "Joins an existing Thread network with its active operational dataset (TLVs in hex)."
+msgstr ""
+
+msgctxt "#32047"
+msgid "Shows this network's dataset and saves it to dataset.txt in the add-on's data folder, to give to Home Assistant or another border router."
+msgstr ""
+
+msgctxt "#32048"
+msgid "Lets a device join with its joiner passphrase (PSKd). Matter devices are added from their Matter app instead."
+msgstr ""
+
+msgctxt "#32100"
+msgid "Could not restart the threadbridge service"
+msgstr ""
+
+msgctxt "#32101"
+msgid "The threadbridge service does not answer. Check that the threadbridge package is installed and the dongle is plugged in."
+msgstr ""
+
+msgctxt "#32102"
+msgid "No dongle found in /dev/serial/by-id."
+msgstr ""
+
+msgctxt "#32103"
+msgid "No network interface found."
+msgstr ""
+
+msgctxt "#32104"
+msgid "Network name"
+msgstr ""
+
+msgctxt "#32105"
+msgid "The network name must be 1 to 16 bytes."
+msgstr ""
+
+msgctxt "#32106"
+msgid "Channel (11-26, empty: automatic)"
+msgstr ""
+
+msgctxt "#32107"
+msgid "This border router is already in a Thread network. Leave it? Devices in that network stay there."
+msgstr ""
+
+msgctxt "#32108"
+msgid "Thread network formed"
+msgstr ""
+
+msgctxt "#32109"
+msgid "Dataset from"
+msgstr ""
+
+msgctxt "#32110"
+msgid "Type it in"
+msgstr ""
+
+msgctxt "#32111"
+msgid "A text file"
+msgstr ""
+
+msgctxt "#32112"
+msgid "Dataset (TLVs in hex)"
+msgstr ""
+
+msgctxt "#32113"
+msgid "That is not a dataset in hex."
+msgstr ""
+
+msgctxt "#32114"
+msgid "Joining the Thread network"
+msgstr ""
+
+msgctxt "#32115"
+msgid "This border router is not in a Thread network."
+msgstr ""
+
+msgctxt "#32116"
+msgid "Saved to %s"
+msgstr ""
+
+msgctxt "#32117"
+msgid "Joiner passphrase (PSKd)"
+msgstr ""
+
+msgctxt "#32118"
+msgid "A PSKd is 6 to 32 of 0-9 and A-Z, without I, O, Q and Z."
+msgstr ""
+
+msgctxt "#32119"
+msgid "Device EUI-64 (empty: any device)"
+msgstr ""
+
+msgctxt "#32120"
+msgid "An EUI-64 is 16 hex digits."
+msgstr ""
+
+msgctxt "#32121"
+msgid "The commissioner did not start. Is the border router in a network?"
+msgstr ""
+
+msgctxt "#32122"
+msgid "Start joining on the device now. It may join for %d seconds."
+msgstr ""
+
+msgctxt "#32123"
+msgid "The border router refused: %s"
+msgstr ""
+
+msgctxt "#32124"
+msgid "The channel must be 11 to 26."
+msgstr ""
+
+msgctxt "#32125"
+msgid "Automatic"
+msgstr ""
+
+msgctxt "#32130"
+msgid "Role"
+msgstr ""
+
+msgctxt "#32131"
+msgid "Network name"
+msgstr ""
+
+msgctxt "#32132"
+msgid "Channel"
+msgstr ""
+
+msgctxt "#32133"
+msgid "PAN ID"
+msgstr ""
+
+msgctxt "#32134"
+msgid "Extended PAN ID"
+msgstr ""
+
+msgctxt "#32135"
+msgid "Routers"
+msgstr ""
+
+msgctxt "#32136"
+msgid "RLOC16"
+msgstr ""
+
+msgctxt "#32137"
+msgid "Border agent"
+msgstr ""
+
+msgctxt "#32138"
+msgid "RCP firmware"
+msgstr ""
+
+msgctxt "#32139"
+msgid "Thread network status"
+msgstr ""
+

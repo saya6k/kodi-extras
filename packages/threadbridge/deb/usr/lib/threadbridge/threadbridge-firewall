@@ -1,0 +1,67 @@
+#!/bin/sh
+# The ingress filter of ot-br-posix's script/otbr-firewall, and the NAT44 of
+# its script/_nat64. otbr-agent fills the ipsets from the Thread network data.
+#
+#   threadbridge-firewall start | nat44 | stop
+set -u
+
+THREAD_IF=wpan0
+CHAIN=OTBR_FORWARD_INGRESS
+# Marks what comes in from Thread so only that is masqueraded.
+# (iptables-nft prints the rule -C finds, hence >/dev/null on every -C.)
+MARK=0x1001
+
+stop() {
+    while ip6tables -C FORWARD -o "$THREAD_IF" -j "$CHAIN" >/dev/null 2>&1; do
+        ip6tables -D FORWARD -o "$THREAD_IF" -j "$CHAIN"
+    done
+    if ip6tables -L "$CHAIN" >/dev/null 2>&1; then
+        ip6tables -F "$CHAIN"
+        ip6tables -X "$CHAIN"
+    fi
+    for set in otbr-ingress-deny-src otbr-ingress-deny-src-swap otbr-ingress-allow-dst otbr-ingress-allow-dst-swap; do
+        ipset destroy "$set" 2>/dev/null
+    done
+    while iptables -t mangle -C PREROUTING -i "$THREAD_IF" -j MARK --set-mark "$MARK" >/dev/null 2>&1; do
+        iptables -t mangle -D PREROUTING -i "$THREAD_IF" -j MARK --set-mark "$MARK"
+    done
+    while iptables -t nat -C POSTROUTING -m mark --mark "$MARK" -j MASQUERADE >/dev/null 2>&1; do
+        iptables -t nat -D POSTROUTING -m mark --mark "$MARK" -j MASQUERADE
+    done
+    for rule in "-i $THREAD_IF -j ACCEPT" "-o $THREAD_IF -j ACCEPT"; do
+        # shellcheck disable=SC2086
+        while iptables -C FORWARD $rule >/dev/null 2>&1; do iptables -D FORWARD $rule; done
+    done
+    return 0
+}
+
+start() {
+    # stop tolerates what is not there yet, so it runs before set -e.
+    stop
+    set -e
+    for set in otbr-ingress-deny-src otbr-ingress-deny-src-swap otbr-ingress-allow-dst otbr-ingress-allow-dst-swap; do
+        ipset create -exist "$set" hash:net family inet6
+    done
+    ip6tables -N "$CHAIN"
+    ip6tables -I FORWARD 1 -o "$THREAD_IF" -j "$CHAIN"
+    ip6tables -A "$CHAIN" -m pkttype --pkt-type unicast -i "$THREAD_IF" -j DROP
+    ip6tables -A "$CHAIN" -m set --match-set otbr-ingress-deny-src src -j DROP
+    ip6tables -A "$CHAIN" -m set --match-set otbr-ingress-allow-dst dst -j ACCEPT
+    ip6tables -A "$CHAIN" -m pkttype --pkt-type unicast -j DROP
+    ip6tables -A "$CHAIN" -j ACCEPT
+}
+
+nat44() {
+    set -e
+    iptables -t mangle -A PREROUTING -i "$THREAD_IF" -j MARK --set-mark "$MARK"
+    iptables -t nat -A POSTROUTING -m mark --mark "$MARK" -j MASQUERADE
+    iptables -I FORWARD 1 -i "$THREAD_IF" -j ACCEPT
+    iptables -I FORWARD 1 -o "$THREAD_IF" -j ACCEPT
+}
+
+case "${1:-}" in
+    start) start ;;
+    nat44) nat44 ;;
+    stop) stop ;;
+    *) echo "usage: $0 start | nat44 | stop" >&2; exit 2 ;;
+esac
