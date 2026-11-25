@@ -8,12 +8,13 @@ Kodi 애드온과, 애드온이 쓰는 OSMC(Vero V) 패키지를 모아 둔 저�
 |---|---|---|---|
 | `script.service.threadbridge` | 802.15.4 USB 동글로 Thread 보더 라우터(OTBR)를 돌립니다. Home Assistant, Apple Home, Google Home과 함께 씁니다. | `threadbridge` | [docs/threadbridge.md](docs/threadbridge.md) |
 | `service.atmos67` | Kodi가 패스스루한 Atmos·DTS를 스피커 배치에 맞게 디코딩해 AES67 스피커로 보냅니다. | `atmos67` | [docs/atmos67.md](docs/atmos67.md) |
+| `plugin.video.chzzk` | 치지직의 라이브와 동영상을 봅니다. | 없음 | [docs/chzzk.md](docs/chzzk.md) |
 
-두 애드온은 모두 설정 화면 역할이고, 실제 일은 `.deb` 패키지의 systemd 서비스가 합니다. 애드온은 설정을 `~/.kodi/userdata/addon_data/<애드온 id>/`에 쓰고 `sudo -n systemctl`로 서비스를 다시 시작합니다. OSMC의 `osmc` 사용자는 암호 없이 sudo를 쓸 수 있습니다. 패키지는 Vero V의 OSMC(Debian bullseye armhf, Kodi 21)용입니다. threadbridge는 arm64 패키지도 있습니다.
+threadbridge와 atmos67은 설정 화면 역할이고, 실제 일은 `.deb` 패키지의 systemd 서비스가 합니다. 애드온은 설정을 `~/.kodi/userdata/addon_data/<애드온 id>/`에 쓰고 `sudo -n systemctl`로 서비스를 다시 시작합니다. OSMC의 `osmc` 사용자는 암호 없이 sudo를 쓸 수 있습니다. 패키지는 Vero V의 OSMC(Debian bullseye armhf, Kodi 21)용입니다. threadbridge는 arm64 패키지도 있습니다. 치지직 플러그인은 Python만으로 돌아서 패키지가 필요 없고, Kodi가 도는 곳이면 어디서나 씁니다.
 
 ## 설치 (OSMC)
 
-1. 쓸 애드온의 패키지를 Vero V에 설치합니다. 빌드 방법은 각 문서에 있습니다.
+1. 쓸 애드온에 패키지가 있으면 Vero V에 설치합니다. 빌드 방법은 각 문서에 있습니다.
 
    ```sh
    sudo apt install ./threadbridge_<버전>_armhf.deb
@@ -27,6 +28,7 @@ Kodi 애드온과, 애드온이 쓰는 OSMC(Vero V) 패키지를 모아 둔 저�
 ```
 kodi-extras/
 ├── addons/                      # Kodi 애드온
+│   ├── plugin.video.chzzk/
 │   ├── script.service.threadbridge/
 │   └── service.atmos67/
 ├── packages/                    # 애드온이 쓰는 OSMC 패키지(.deb)의 빌드
