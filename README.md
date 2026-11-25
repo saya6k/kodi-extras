@@ -72,3 +72,11 @@ scripts/release-package.sh threadbridge   # → 릴리스 threadbridge-v<버전>
 ```
 
 버전은 그 패키지의 `build.sh`의 `version=`입니다. 릴리스가 없으면 만들고, 같은 이름의 파일은 바꿔 올립니다. atmos67은 로컬의 atmos67 저장소에서 빌드하므로 CI가 아니라 이 스크립트로 올립니다.
+
+## 라이선스
+
+이 저장소의 코드(애드온, 패키징, 스크립트)는 [MIT](LICENSE)입니다. 패키지에 들어가는 프로그램은 각자의 라이선스를 따릅니다.
+
+- **threadbridge**: ot-br-posix와 OpenThread(BSD-3-Clause), Mbed TLS(Apache-2.0), cJSON과 cpp-httplib(MIT)가 들어 있습니다. 고지는 패키지의 `/usr/share/doc/threadbridge/copyright`에 있습니다. 빌드할 때 소스의 라이선스 파일로 만듭니다(`packages/threadbridge/copyright.sh`).
+- **atmos67**: atmos67은 GPL-3.0-only이고, SECS 2R(AGPL-3.0-only)과 FFmpeg(LGPL)이 정적으로 들어 있습니다. 그래서 `.deb`를 배포하려면 atmos67의 소스도 함께 공개해야 합니다. 소스 저장소를 공개하기 전까지는 atmos67 패키지를 릴리스하지 않습니다.
+- **치지직 플러그인**: 서드파티 코드가 없습니다.

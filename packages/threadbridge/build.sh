@@ -34,6 +34,8 @@ sed -i -e "s/@VERSION@/$version/" -e "s/@ARCH@/$arch/" -e "s/@OTBR_TAG@/$OTBR_TA
 install -D -m 755 "build/$arch/src/agent/otbr-agent" "$stage/deb/usr/sbin/otbr-agent"
 install -D -m 755 "build/$arch/third_party/openthread/repo/src/posix/ot-ctl" "$stage/deb/usr/sbin/ot-ctl"
 "$triplet-strip" "$stage/deb/usr/sbin/otbr-agent" "$stage/deb/usr/sbin/ot-ctl"
+mkdir -p "$stage/deb/usr/share/doc/threadbridge"
+./copyright.sh "$OTBR_SRC" "$stage/deb/usr/share/doc/threadbridge/copyright"
 
 # Runs under qemu when the build machine is not ARCH.
 QEMU_LD_PREFIX=/usr/$triplet "$stage/deb/usr/sbin/otbr-agent" --version
