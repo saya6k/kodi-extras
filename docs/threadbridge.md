@@ -2,7 +2,7 @@
 
 Kodi 박스에 802.15.4 USB 동글을 꽂아 Thread 보더 라우터(OTBR)로 쓰게 합니다. ot-br-posix의 `otbr-agent`를 systemd 서비스로 돌리고, Kodi 애드온에서 설정과 Thread 네트워크 관리를 합니다.
 
-- `packages/threadbridge`: OSMC(Vero V, Debian bullseye armhf)용 `.deb`. `otbr-agent`, `ot-ctl`, 서비스와 방화벽 스크립트가 들어 있습니다.
+- `packages/threadbridge`: `.deb` 패키지. OSMC(Vero V)용 armhf와, Debian 계열 64비트 ARM 배포판(Raspberry Pi OS 64비트 등)용 arm64가 있습니다. `otbr-agent`, `ot-ctl`, 서비스와 방화벽 스크립트가 들어 있습니다.
 - `addons/script.service.threadbridge`: Kodi 애드온. 동글·네트워크 설정, 상태 보기, 네트워크 만들기, dataset 가져오기·내보내기, joiner 추가를 합니다.
 
 ## 동글
@@ -20,10 +20,13 @@ Kodi 박스에 802.15.4 USB 동글을 꽂아 Thread 보더 라우터(OTBR)로 �
 ## 빌드
 
 ```sh
-docker build -t threadbridge-armhf packages/threadbridge
-docker run --rm -v "$PWD":/work -w /work threadbridge-armhf packages/threadbridge/build.sh
-# → packages/threadbridge/out/threadbridge_<version>_armhf.deb
+docker build -t threadbridge-build packages/threadbridge
+docker run --rm -v "$PWD":/work -w /work threadbridge-build packages/threadbridge/build.sh armhf
+docker run --rm -v "$PWD":/work -w /work threadbridge-build packages/threadbridge/build.sh arm64
+# → packages/threadbridge/out/threadbridge_<version>_armhf.deb, threadbridge_<version>_arm64.deb
 ```
+
+빌드 머신과 아키텍처가 같으면 네이티브로, 다르면 크로스 컴파일러로 빌드합니다. 아키텍처를 빼면 armhf입니다. 둘 다 bullseye에서 빌드하므로 glibc 2.31 이상이면 돕니다. Debian 11~13과 그 위의 배포판이 해당합니다.
 
 ot-br-posix 버전과 빌드 옵션은 `packages/threadbridge/otbr-options`에 있습니다. 빌드 이미지는 bullseye의 snapshot.debian.org 저장소를 씁니다. bullseye 미러가 아카이브로 옮겨 가는 중이어서 일반 미러로는 설치가 실패하기 때문입니다.
 
@@ -44,7 +47,7 @@ docker run --rm --privileged --sysctl net.ipv6.conf.all.disable_ipv6=0 -v "$PWD"
 sudo apt install ./threadbridge_<version>_armhf.deb
 ```
 
-그다음 Kodi에서 애드온을 설치합니다. kodi-extras 저장소에서 설치하거나(README의 "설치"), `scripts/package-addon.sh script.service.threadbridge`로 만든 zip을 zip 파일로 설치합니다. 애드온 설정을 바꾸면 그 내용이 `~/.kodi/userdata/addon_data/script.service.threadbridge/threadbridge.conf`에 쓰이고 서비스가 재시작됩니다. 재시작에는 `sudo -n systemctl`을 쓰는데, OSMC의 `osmc` 사용자는 암호 없이 sudo를 쓸 수 있습니다. 패키지 기본값은 `/etc/threadbridge/threadbridge.conf`에 있습니다.
+OSMC가 아닌 arm64 배포판에서는 `_arm64.deb`를 설치합니다. 그다음 Kodi에서 애드온을 설치합니다. kodi-extras 저장소에서 설치하거나(README의 "설치"), `scripts/package-addon.sh script.service.threadbridge`로 만든 zip을 zip 파일로 설치합니다. 애드온 설정을 바꾸면 그 내용이 `~/.kodi/userdata/addon_data/script.service.threadbridge/threadbridge.conf`에 쓰이고 서비스가 재시작됩니다. 재시작에는 `sudo -n systemctl`을 쓰는데, OSMC의 `osmc` 사용자는 암호 없이 sudo를 쓸 수 있습니다. 패키지 기본값은 `/etc/threadbridge/threadbridge.conf`에 있습니다.
 
 서비스가 켜질 때 하는 일입니다.
 
@@ -52,6 +55,23 @@ sudo apt install ./threadbridge_<version>_armhf.deb
 - 유입 필터를 겁니다. ipset과 `OTBR_FORWARD_INGRESS` ip6tables 체인으로, ot-br-posix의 `otbr-firewall`과 같습니다.
 - NAT64를 켜 두었다면 IPv4 포워딩과 NAT44 MASQUERADE도 겁니다.
 - 서비스가 멈추면 위 규칙을 지웁니다.
+
+### OSMC가 아닌 배포판
+
+서비스는 그대로 돌지만, 애드온과 이어 주는 부분은 OSMC를 전제로 합니다. 서비스는 애드온 설정을 `/home/osmc/.kodi/...`에서 읽고, 애드온은 서비스를 재시작할 때 암호 없는 `sudo`를 씁니다. Kodi를 다른 사용자(예: `kodi`)로 돌린다면 두 가지를 맞춥니다.
+
+```sh
+# 애드온 설정을 읽을 위치를 그 사용자의 것으로 (패키지를 업그레이드해도 남습니다)
+sudo systemctl edit threadbridge
+#   [Service]
+#   EnvironmentFile=-/home/kodi/.kodi/userdata/addon_data/script.service.threadbridge/threadbridge.conf
+
+# 그 사용자가 암호 없이 서비스를 재시작할 수 있게
+echo 'kodi ALL=(root) NOPASSWD: /bin/systemctl restart threadbridge.service, /usr/bin/systemctl restart threadbridge.service' \
+    | sudo tee /etc/sudoers.d/threadbridge
+```
+
+애드온 없이 쓴다면 `/etc/threadbridge/threadbridge.conf`를 고치고 `sudo systemctl restart threadbridge`를 하면 됩니다.
 
 ## 함께 쓰기
 
@@ -63,7 +83,7 @@ Matter 기기는 Thread joiner가 아니라 Matter 컨트롤러(HA, Apple Home, 
 
 ## 확인하지 않은 것
 
-모두 실기(Vero V)와 실제 동글에서 아직 확인하지 않았습니다.
+모두 실기(Vero V, arm64 장비)와 실제 동글에서 아직 확인하지 않았습니다. arm64 패키지는 통합 시험과 같은 빌드 옵션입니다. 통합 시험을 arm64 Linux에서 돌리면, 시험하는 `otbr-agent`가 arm64 네이티브 빌드입니다.
 
 - **커널 기능**: Vero V 커널에 TUN, ip6tables, ipset(`ip_set_hash_net`, `xt_set`), `accept_ra_rt_info_max_plen`이 있는지 모릅니다. ipset이 없으면 서비스가 시작되지 않습니다. 그때는 유입 필터를 끄면 되지만 보안이 약해집니다.
 - **USB 시리얼 드라이버**: ZBT-1·SkyConnect는 CP210x, ZBDongle-E는 CH9102 칩을 씁니다. OSMC 커널에 해당 드라이버가 있는지 모릅니다.

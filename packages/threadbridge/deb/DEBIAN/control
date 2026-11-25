@@ -1,6 +1,6 @@
 Package: threadbridge
 Version: @VERSION@
-Architecture: armhf
+Architecture: @ARCH@
 Maintainer: kodi-extras
 Section: net
 Priority: optional
@@ -9,4 +9,5 @@ Description: Thread border router (OTBR) for an 802.15.4 USB dongle
  Runs otbr-agent from ot-br-posix (@OTBR_TAG@) against a USB dongle with
  OpenThread RCP firmware, so the box routes between its Ethernet or Wi-Fi
  network and a Thread network. The REST API serves Home Assistant and the
- Kodi add-on script.service.threadbridge. Packaged for OSMC on the Vero V.
+ Kodi add-on script.service.threadbridge. Built for OSMC on the Vero V
+ (armhf) and Debian-based arm64 systems.
