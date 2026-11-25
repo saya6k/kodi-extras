@@ -1,0 +1,14 @@
+[Unit]
+Description=atmos67: PTP clock for AES67
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=/etc/atmos67/atmos67.conf
+EnvironmentFile=-/home/osmc/.kodi/userdata/addon_data/service.atmos67/atmos67.conf
+ExecStart=/usr/lib/atmos67/atmos67-ptp ptp4l
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

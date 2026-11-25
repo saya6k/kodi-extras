@@ -1,0 +1,465 @@
+# Kodi Media Center language file
+# Addon Name: atmos67
+# Addon id: service.atmos67
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ko_KR\n"
+
+msgctxt "#32001"
+msgid "Speakers"
+msgstr "스피커"
+
+msgctxt "#32002"
+msgid "AES67 network"
+msgstr "AES67 네트워크"
+
+msgctxt "#32003"
+msgid "Kodi"
+msgstr "Kodi"
+
+msgctxt "#32010"
+msgid "Speaker layout"
+msgstr "스피커 배치"
+
+msgctxt "#32011"
+msgid "Speaker layout of the room. Positions and distances are left to the measured correction."
+msgstr "방의 스피커 배치입니다. 실제 위치와 거리는 측정 보정이 맞춥니다."
+
+
+
+msgctxt "#32020"
+msgid "Network interface"
+msgstr "네트워크 인터페이스"
+
+msgctxt "#32021"
+msgid "Interface the PTP clock runs on."
+msgstr "PTP 클록을 돌릴 인터페이스입니다."
+
+msgctxt "#32022"
+msgid "Multicast address of the first stream"
+msgstr "첫 스트림의 멀티캐스트 주소"
+
+msgctxt "#32023"
+msgid "Speakers are sent 8 to a stream; further streams use the following addresses."
+msgstr "스피커를 8개씩 한 스트림으로 보내며, 다음 스트림은 이어지는 주소를 씁니다."
+
+msgctxt "#32024"
+msgid "PTP domain"
+msgstr "PTP 도메인"
+
+msgctxt "#32025"
+msgid "Must match the PTP domain of the AES67 receivers."
+msgstr "AES67 수신기의 PTP 도메인과 같아야 합니다."
+
+msgctxt "#32026"
+msgid "Buffer (ms)"
+msgstr "버퍼 (ms)"
+
+msgctxt "#32027"
+msgid "Audio held back before sending. Raise it if the sound drops out; compensate with Kodi's audio offset."
+msgstr "보내기 전에 쌓아 두는 오디오입니다. 소리가 끊기면 올리고, 늘어난 지연은 Kodi의 오디오 오프셋으로 맞춥니다."
+
+msgctxt "#32030"
+msgid "Use atmos67 as Kodi's audio output"
+msgstr "Kodi 오디오 출력을 atmos67로 설정"
+
+msgctxt "#32031"
+msgid "Selects the atmos67 device for audio and passthrough and enables passthrough of every format. Sound no longer goes to HDMI."
+msgstr "오디오 출력과 패스스루 장치를 atmos67로 바꾸고 모든 포맷의 패스스루를 켭니다. HDMI로는 소리가 나가지 않게 됩니다."
+
+msgctxt "#32040"
+msgid "The atmos67 package is not installed"
+msgstr "atmos67 패키지가 설치돼 있지 않습니다"
+
+msgctxt "#32041"
+msgid "Could not restart the atmos67 service"
+msgstr "atmos67 서비스를 다시 시작하지 못했습니다"
+
+msgctxt "#32042"
+msgid "Kodi now plays through atmos67."
+msgstr "이제 Kodi가 atmos67로 재생합니다."
+
+msgctxt "#32043"
+msgid "These Kodi settings could not be changed:"
+msgstr "다음 Kodi 설정을 바꾸지 못했습니다:"
+
+msgctxt "#32004"
+msgid "Bass management and levels"
+msgstr "베이스 매니지먼트·레벨"
+
+msgctxt "#32005"
+msgid "Room correction"
+msgstr "룸 보정"
+
+msgctxt "#32006"
+msgid "Volume"
+msgstr "볼륨"
+
+msgctxt "#32050"
+msgid "Correction"
+msgstr "보정"
+
+msgctxt "#32051"
+msgid "Off sends the speakers as rendered. Manual applies the crossovers, trims and distances set here. Measured applies the correction from the calibration wizard, with the trims added."
+msgstr "끔은 렌더한 그대로 보냅니다. 수동은 여기서 정한 크로스오버, 레벨, 거리를 적용합니다. 측정 보정은 보정 마법사가 만든 보정에 레벨만 더해 적용합니다."
+
+msgctxt "#32052"
+msgid "Off"
+msgstr "끔"
+
+msgctxt "#32053"
+msgid "Manual"
+msgstr "수동"
+
+msgctxt "#32054"
+msgid "Measured"
+msgstr "측정 보정"
+
+msgctxt "#32055"
+msgid "Subwoofers"
+msgstr "서브우퍼"
+
+msgctxt "#32056"
+msgid "The LFE and the low end of crossed-over speakers go to the subwoofers, shared equally. With none, speakers play full range and the LFE is dropped."
+msgstr "LFE와 크로스오버한 스피커의 저역이 서브우퍼로 가며, 서브우퍼들이 똑같이 나눠 냅니다. 0이면 스피커는 풀레인지로 내고 LFE는 버립니다."
+
+msgctxt "#32057"
+msgid "Crossover slope (dB/octave)"
+msgstr "크로스오버 기울기 (dB/옥타브)"
+
+msgctxt "#32058"
+msgid "Linkwitz–Riley crossovers of 12 or 24 dB per octave."
+msgstr "Linkwitz–Riley 12 또는 24 dB/옥타브입니다."
+
+msgctxt "#32060"
+msgid "Front crossover (Hz)"
+msgstr "프런트 크로스오버 (Hz)"
+
+msgctxt "#32061"
+msgid "Center crossover (Hz)"
+msgstr "센터 크로스오버 (Hz)"
+
+msgctxt "#32062"
+msgid "Surround crossover (Hz)"
+msgstr "서라운드 크로스오버 (Hz)"
+
+msgctxt "#32063"
+msgid "Back crossover (Hz)"
+msgstr "백 크로스오버 (Hz)"
+
+msgctxt "#32064"
+msgid "Top crossover (Hz)"
+msgstr "천장 크로스오버 (Hz)"
+
+msgctxt "#32065"
+msgid "0 plays these speakers full range. 80 Hz is the THX reference."
+msgstr "0이면 이 스피커들은 풀레인지로 냅니다. THX 기준은 80 Hz입니다."
+
+msgctxt "#32066"
+msgid "Speaker levels and distances"
+msgstr "스피커별 레벨·거리"
+
+msgctxt "#32067"
+msgid "A level trim and the distance to the main seat for each speaker. Distances become delays, except with a measured correction, which aligns the speakers itself."
+msgstr "스피커마다 레벨 보정과 주 청취 위치까지의 거리를 정합니다. 거리는 지연으로 바뀝니다. 측정 보정은 스스로 시간을 맞추므로 거리를 쓰지 않습니다."
+
+msgctxt "#32070"
+msgid "Microphone (ALSA device)"
+msgstr "마이크 (ALSA 장치)"
+
+msgctxt "#32071"
+msgid "The USB measurement microphone, such as plughw:1,0. arecord -l lists the devices."
+msgstr "USB 측정 마이크입니다. 예: plughw:1,0. 장치 목록은 arecord -l로 봅니다."
+
+msgctxt "#32072"
+msgid "Microphone calibration file"
+msgstr "마이크 보정 파일"
+
+msgctxt "#32073"
+msgid "The calibration file that came with the microphone (UMIK-1 and others). Optional."
+msgstr "마이크와 함께 받은 보정 파일입니다(UMIK-1 등). 없어도 됩니다."
+
+msgctxt "#32074"
+msgid "Measuring positions"
+msgstr "측정 위치 수"
+
+msgctxt "#32075"
+msgid "Microphone positions to measure, the first at the main seat."
+msgstr "측정할 마이크 위치 수입니다. 첫 위치는 주 청취 위치입니다."
+
+msgctxt "#32076"
+msgid "Start calibration"
+msgstr "보정 시작"
+
+msgctxt "#32077"
+msgid "Plays a sweep from every speaker at each microphone position and designs the correction with SECS 2R. Takes several minutes; keep the room quiet."
+msgstr "마이크 위치마다 모든 스피커에서 스윕을 재생하고 SECS 2R로 보정을 설계합니다. 몇 분 걸리며, 그동안 방을 조용히 해 주세요."
+
+msgctxt "#32080"
+msgid "Maximum volume (dB)"
+msgstr "최대 볼륨 (dB)"
+
+msgctxt "#32081"
+msgid "The level at Kodi's 100 %. Kodi's volume spans the 60 dB below it."
+msgstr "Kodi 볼륨 100 %의 레벨입니다. 그 아래로 60 dB 범위를 씁니다."
+
+msgctxt "#32100"
+msgid "Room calibration"
+msgstr "룸 보정"
+
+msgctxt "#32101"
+msgid "Measure from %d microphone positions? Every speaker will play a sweep in turn."
+msgstr "마이크 위치 %d곳에서 측정할까요? 모든 스피커가 차례로 스윕을 재생합니다."
+
+msgctxt "#32102"
+msgid "The atmos67 service did not come back. Check its log."
+msgstr "atmos67 서비스가 다시 시작되지 않았습니다. 로그를 확인해 주세요."
+
+msgctxt "#32103"
+msgid "Preparing the measurement"
+msgstr "측정을 준비하는 중"
+
+msgctxt "#32104"
+msgid "Place the microphone at position %d of %d, at ear height, pointing up, and keep quiet."
+msgstr "마이크를 %d번째 위치(전체 %d곳)에 귀 높이로, 위를 향하게 두고 조용히 해 주세요."
+
+msgctxt "#32105"
+msgid "Measuring position %d"
+msgstr "%d번째 위치를 측정하는 중"
+
+msgctxt "#32106"
+msgid "Designing the correction (several minutes)"
+msgstr "보정을 설계하는 중 (몇 분 걸립니다)"
+
+msgctxt "#32107"
+msgid "The measured correction is now in use."
+msgstr "이제 측정 보정을 씁니다."
+
+msgctxt "#32108"
+msgid "Calibration failed:"
+msgstr "보정에 실패했습니다:"
+
+msgctxt "#32110"
+msgid "Speaker levels and distances"
+msgstr "스피커별 레벨·거리"
+
+msgctxt "#32111"
+msgid "%s   %+.1f dB   %s m"
+msgstr "%s   %+.1f dB   %s m"
+
+msgctxt "#32112"
+msgid "%s level trim (dB)"
+msgstr "%s 레벨 보정 (dB)"
+
+msgctxt "#32113"
+msgid "%s distance (m)"
+msgstr "%s 거리 (m)"
+
+msgctxt "#32114"
+msgid "Could not read the speakers of the current mode."
+msgstr "현재 모드의 스피커 목록을 읽지 못했습니다."
+
+msgctxt "#32007"
+msgid "Picture sync"
+msgstr "영상 동기"
+
+msgctxt "#32090"
+msgid "Delay the picture to match the sound"
+msgstr "영상을 소리에 맞춰 늦추기"
+
+msgctxt "#32091"
+msgid "Sets Kodi's audio offset whenever a video starts, from the time the sound takes through atmos67, the receivers and this adjustment."
+msgstr "영상이 시작될 때마다 소리가 atmos67과 수신기를 지나는 시간에 아래 조정을 더해 Kodi의 오디오 오프셋으로 설정합니다."
+
+msgctxt "#32092"
+msgid "Receiver latency (ms)"
+msgstr "수신기 지연 (ms)"
+
+msgctxt "#32093"
+msgid "Time the AES67 receivers and amplifiers take, from their documentation. The calibration wizard measures it."
+msgstr "AES67 수신기와 앰프가 걸리는 시간입니다. 장비 설명서를 참고하세요. 보정 마법사가 측정해 채웁니다."
+
+msgctxt "#32094"
+msgid "Fine adjustment (ms)"
+msgstr "미세 조정 (ms)"
+
+msgctxt "#32095"
+msgid "Added to the computed delay. Raise it when the sound still comes late."
+msgstr "계산한 지연에 더합니다. 소리가 아직 늦으면 올립니다."
+
+msgctxt "#32109"
+msgid "Put the microphone back at the main seat to measure how late the sound arrives, for the picture sync."
+msgstr "영상 동기를 위해 소리가 늦는 정도를 잽니다. 마이크를 주 청취 위치로 다시 옮겨 주세요."
+
+msgctxt "#32034"
+msgid "Streams"
+msgstr "스트림 구성"
+
+msgctxt "#32035"
+msgid "Which speakers go in which stream, for receivers that take only some of them. Without changes, 8 channels a stream in order."
+msgstr "어느 스피커를 어느 스트림에 넣을지 정합니다. 수신기마다 필요한 채널만 받게 할 수 있습니다. 바꾸지 않으면 순서대로 8채널씩 보냅니다."
+
+msgctxt "#32120"
+msgid "AES67 streams"
+msgstr "AES67 스트림"
+
+msgctxt "#32121"
+msgid "Add a stream"
+msgstr "스트림 추가"
+
+msgctxt "#32122"
+msgid "Back to 8 channels a stream"
+msgstr "8채널씩 기본값으로"
+
+msgctxt "#32123"
+msgid "Name: %s"
+msgstr "이름: %s"
+
+msgctxt "#32124"
+msgid "Multicast address: %s"
+msgstr "멀티캐스트 주소: %s"
+
+msgctxt "#32125"
+msgid "Channels: %s"
+msgstr "채널: %s"
+
+msgctxt "#32126"
+msgid "Delete this stream"
+msgstr "이 스트림 삭제"
+
+msgctxt "#32127"
+msgid "Stream name (shown by the receivers)"
+msgstr "스트림 이름 (수신기에 보이는 이름)"
+
+msgctxt "#32128"
+msgid "Multicast address (239.x.x.x)"
+msgstr "멀티캐스트 주소 (239.x.x.x)"
+
+msgctxt "#32129"
+msgid "Not a multicast address (224.0.0.0 to 239.255.255.255)."
+msgstr "멀티캐스트 주소가 아닙니다(224.0.0.0~239.255.255.255)."
+
+msgctxt "#32130"
+msgid "Channels of this stream (up to 8)"
+msgstr "이 스트림의 채널 (최대 8개)"
+
+msgctxt "#32131"
+msgid "A stream carries at most %d channels."
+msgstr "한 스트림에는 채널을 %d개까지 넣을 수 있습니다."
+
+msgctxt "#32132"
+msgid "Delete this stream?"
+msgstr "이 스트림을 삭제할까요?"
+
+msgctxt "#32133"
+msgid "not sent: %s"
+msgstr "보내지 않는 채널: %s"
+
+msgctxt "#32036"
+msgid "Status"
+msgstr "상태 보기"
+
+msgctxt "#32037"
+msgid "What the service is doing: PTP clock, streams, playback, volume and latency."
+msgstr "서비스 상태를 봅니다: PTP 클록, 스트림, 재생, 볼륨, 지연."
+
+msgctxt "#32140"
+msgid "atmos67 status"
+msgstr "atmos67 상태"
+
+msgctxt "#32141"
+msgid "Service: %s"
+msgstr "서비스: %s"
+
+msgctxt "#32142"
+msgid "Correction: %s"
+msgstr "보정: %s"
+
+msgctxt "#32143"
+msgid "The sender does not answer. It waits for the PTP clock before it starts; see the service log."
+msgstr "송출기가 응답하지 않습니다. PTP 클록을 찾을 때까지 시작하지 않으니 서비스 로그를 확인해 주세요."
+
+msgctxt "#32144"
+msgid "PTP grandmaster: %s (domain %s)"
+msgstr "PTP 그랜드마스터: %s (도메인 %s)"
+
+msgctxt "#32145"
+msgid "Playing"
+msgstr "재생 중"
+
+msgctxt "#32146"
+msgid "Silent (nothing playing)"
+msgstr "무음 (재생 없음)"
+
+msgctxt "#32147"
+msgid "Volume: muted"
+msgstr "볼륨: 음소거"
+
+msgctxt "#32148"
+msgid "Volume: %s dB"
+msgstr "볼륨: %s dB"
+
+msgctxt "#32149"
+msgid "Sound held back by the sender: %s ms"
+msgstr "송출기가 늦추는 시간: %s ms"
+
+msgctxt "#32150"
+msgid "Send errors: %s"
+msgstr "송출 오류: %s"
+
+msgctxt "#32151"
+msgid "Streams from %s:"
+msgstr "%s에서 보내는 스트림:"
+
+msgctxt "#32038"
+msgid "Dante receivers"
+msgstr "Dante 수신기 연결"
+
+msgctxt "#32039"
+msgid "Finds Dante devices on the network, turns on their AES67 mode and subscribes them to a stream, as Dante Controller would."
+msgstr "네트워크의 Dante 장비를 찾아 AES67 모드를 켜고 스트림을 구독시킵니다. Dante Controller에서 하는 일과 같습니다."
+
+msgctxt "#32160"
+msgid "Dante receivers"
+msgstr "Dante 수신기"
+
+msgctxt "#32161"
+msgid "Looking for Dante devices"
+msgstr "Dante 장비를 찾는 중"
+
+msgctxt "#32162"
+msgid "No Dante device answered. It has to be on the same network as the Vero V."
+msgstr "응답한 Dante 장비가 없습니다. Vero V와 같은 네트워크에 있어야 합니다."
+
+msgctxt "#32163"
+msgid "Stream to receive"
+msgstr "받을 스트림"
+
+msgctxt "#32164"
+msgid "First receiver channel"
+msgstr "수신기의 첫 채널 번호"
+
+msgctxt "#32165"
+msgid "%s goes to %s, channels %d to %d."
+msgstr "%s 스트림을 %s의 %d~%d번 채널로 받게 했습니다."
+
+msgctxt "#32166"
+msgid "The Dante step failed:"
+msgstr "Dante 작업이 실패했습니다:"
+
+msgctxt "#32167"
+msgid "Subscribe to a stream"
+msgstr "스트림 연결"
+
+msgctxt "#32168"
+msgid "Turn AES67 mode on"
+msgstr "AES67 모드 켜기"
+
+msgctxt "#32169"
+msgid "Turn AES67 mode off"
+msgstr "AES67 모드 끄기"
+
+msgctxt "#32170"
+msgid "Done. Reboot the Dante device for the change to take effect."
+msgstr "바꿨습니다. Dante 장비를 재부팅해야 적용됩니다."

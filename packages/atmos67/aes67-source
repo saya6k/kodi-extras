@@ -1,0 +1,14 @@
+# The atmos67 source the package is built from, shared by build.sh and
+# build-aarch64.sh: a commit of the aes67 repository (~/Projects/aes67), which
+# has no remote. The repository is mounted read-only at /aes67, and the commit
+# is taken out of it, so uncommitted changes there never reach the package.
+AES67_REV=22c358799f7f55f88bb5906b074fc274d8ea0d31
+AES67_REPO=${AES67_REPO:-/aes67}
+AES67_SRC=build/aes67
+
+fetch_aes67() {
+    rm -rf "$AES67_SRC"
+    mkdir -p "$AES67_SRC"
+    # The mount belongs to another user; git refuses it without this.
+    git -c safe.directory='*' -C "$AES67_REPO" archive "$AES67_REV" | tar -x -C "$AES67_SRC"
+}

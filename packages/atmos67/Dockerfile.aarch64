@@ -1,0 +1,35 @@
+# A fully static 64-bit atmos67 for the Vero V. Its kernel is arm64 under the
+# armhf userland, so a binary that needs nothing from the userland runs there
+# in place of the 32-bit one. Built with musl from a glibc host: on a musl
+# host the build scripts would be static too, and bindgen could not load
+# libclang.
+FROM rust:1.95-bookworm
+
+RUN apt-get update && apt-get install -y --no-install-recommends musl-tools clang libclang-dev pkg-config file xz-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# The toolchain aes67's rust-toolchain.toml pins (keep the two equal).
+ARG RUST_TOOLCHAIN=1.100.0
+RUN rustup toolchain install ${RUST_TOOLCHAIN} --profile minimal -t aarch64-unknown-linux-musl
+
+# The same FFmpeg as the armhf package. Debian's libgcc implements outline
+# atomics with glibc's __getauxval, which musl lacks, so they are inlined.
+ARG FFMPEG_VERSION=8.0
+RUN curl -fsSL https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz | tar xJ -C /tmp \
+    && cd /tmp/ffmpeg-${FFMPEG_VERSION} \
+    && ./configure --prefix=/opt/ffmpeg-musl --cc=musl-gcc --extra-cflags=-mno-outline-atomics \
+        --enable-static --disable-shared --enable-pic \
+        --disable-everything --disable-programs --disable-doc --disable-network \
+        --disable-avdevice --disable-avfilter --disable-swscale \
+        --enable-decoder=ac3,eac3,dca \
+    && make -j"$(nproc)" install \
+    && rm -rf /tmp/ffmpeg-${FFMPEG_VERSION}
+
+ENV PKG_CONFIG_ALLOW_CROSS=1 \
+    PKG_CONFIG_ALL_STATIC=1 \
+    PKG_CONFIG_PATH=/opt/ffmpeg-musl/lib/pkgconfig \
+    CC_aarch64_unknown_linux_musl=musl-gcc \
+    CFLAGS_aarch64_unknown_linux_musl=-mno-outline-atomics \
+    CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER=musl-gcc \
+    CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_RUSTFLAGS="-C target-feature=+crt-static"
+WORKDIR /work

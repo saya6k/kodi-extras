@@ -1,0 +1,16 @@
+[Unit]
+Description=atmos67: keep the system clock and the network interface's PTP clock together
+BindsTo=atmos67-ptp4l.service
+After=atmos67-ptp4l.service
+
+[Service]
+EnvironmentFile=/etc/atmos67/atmos67.conf
+EnvironmentFile=-/home/osmc/.kodi/userdata/addon_data/service.atmos67/atmos67.conf
+# Only interfaces with hardware time stamping have a clock of their own.
+ExecCondition=/usr/lib/atmos67/atmos67-ptp has-hardware-clock
+ExecStart=/usr/lib/atmos67/atmos67-ptp phc2sys
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

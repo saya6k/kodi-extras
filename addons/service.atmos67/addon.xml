@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="service.atmos67" name="atmos67" version="0.1.0" provider-name="atmos67">
+  <requires>
+    <import addon="xbmc.python" version="3.0.1"/>
+  </requires>
+  <extension point="xbmc.service" library="service.py"/>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Atmos and DTS to AES67 speakers</summary>
+    <summary lang="ko_KR">Atmos·DTS를 AES67 스피커로</summary>
+    <description lang="en_GB">Settings for the atmos67 service, which decodes the audio Kodi passes through for your speaker layout and sends it as AES67 streams. Requires the atmos67 package (.deb) to be installed on OSMC.</description>
+    <description lang="ko_KR">Kodi가 패스스루한 오디오를 스피커 배치에 맞게 디코딩해 AES67 스트림으로 보내는 atmos67 서비스의 설정입니다. OSMC에 atmos67 패키지(.deb)가 설치돼 있어야 합니다.</description>
+    <platform>linux</platform>
+  </extension>
+</addon>

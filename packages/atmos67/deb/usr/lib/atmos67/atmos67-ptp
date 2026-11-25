@@ -1,0 +1,25 @@
+#!/bin/sh
+# usage: atmos67-ptp ptp4l | phc2sys | has-hardware-clock
+#
+# The AES67 sender reads PTP time from the system clock. On an interface with
+# hardware time stamping ptp4l synchronises the interface's clock and phc2sys
+# carries that to the system clock (or the other way round while this machine
+# is the grandmaster). Otherwise ptp4l works on the system clock directly.
+set -eu
+
+hardware() {
+    ethtool -T "$INTERFACE" 2>/dev/null | grep -q hardware-transmit
+}
+
+case "$1" in
+has-hardware-clock)
+    hardware
+    ;;
+ptp4l)
+    if hardware; then stamping=-H; else stamping=-S; fi
+    exec ptp4l -f /etc/atmos67/ptp4l.conf -i "$INTERFACE" "$stamping" --domainNumber "$PTP_DOMAIN"
+    ;;
+phc2sys)
+    exec phc2sys -a -rr -n "$PTP_DOMAIN"
+    ;;
+esac

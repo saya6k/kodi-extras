@@ -1,0 +1,18 @@
+[Unit]
+Description=atmos67: Kodi passthrough audio to AES67
+Wants=atmos67-ptp4l.service atmos67-phc2sys.service
+After=atmos67-ptp4l.service sound.target network-online.target
+
+[Service]
+EnvironmentFile=/etc/atmos67/atmos67.conf
+EnvironmentFile=-/home/osmc/.kodi/userdata/addon_data/service.atmos67/atmos67.conf
+RuntimeDirectory=atmos67
+ExecStart=/usr/lib/atmos67/atmos67-run
+# SIGTERM goes to atmos67-run alone, which stops the capture so the sender
+# ends with its input and withdraws its streams; the rest is killed after.
+KillMode=mixed
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

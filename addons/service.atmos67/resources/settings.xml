@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings version="1">
+  <section id="service.atmos67">
+    <category id="speakers" label="32001">
+      <group id="1">
+        <setting id="layout" type="string" label="32010" help="32011">
+          <level>0</level>
+          <default>7.1.4</default>
+          <constraints>
+            <options>
+              <option>2.0</option>
+              <option>5.1</option>
+              <option>5.1.2</option>
+              <option>5.1.4</option>
+              <option>7.1</option>
+              <option>7.1.2</option>
+              <option>7.1.4</option>
+              <option>7.1.6</option>
+              <option>9.1</option>
+              <option>9.1.2</option>
+              <option>9.1.4</option>
+              <option>9.1.6</option>
+            </options>
+          </constraints>
+          <control type="list" format="string">
+            <heading>32010</heading>
+          </control>
+        </setting>
+      </group>
+    </category>
+    <category id="network" label="32002">
+      <group id="1">
+        <setting id="interface" type="string" label="32020" help="32021">
+          <level>0</level>
+          <default>eth0</default>
+          <control type="edit" format="string">
+            <heading>32020</heading>
+          </control>
+        </setting>
+        <setting id="address" type="string" label="32022" help="32023">
+          <level>0</level>
+          <default>239.69.67.1</default>
+          <control type="edit" format="ip">
+            <heading>32022</heading>
+          </control>
+        </setting>
+        <setting id="ptp_domain" type="integer" label="32024" help="32025">
+          <level>0</level>
+          <default>0</default>
+          <constraints>
+            <minimum>0</minimum>
+            <maximum>127</maximum>
+          </constraints>
+          <control type="edit" format="integer">
+            <heading>32024</heading>
+          </control>
+        </setting>
+        <setting id="buffer_ms" type="integer" label="32026" help="32027">
+          <level>0</level>
+          <default>100</default>
+          <constraints>
+            <minimum>10</minimum>
+            <maximum>1000</maximum>
+          </constraints>
+          <control type="edit" format="integer">
+            <heading>32026</heading>
+          </control>
+        </setting>
+        <setting id="streams" type="action" label="32034" help="32035">
+          <level>0</level>
+          <data>RunScript(special://home/addons/service.atmos67/streams.py)</data>
+          <control type="button" format="action">
+            <close>true</close>
+          </control>
+        </setting>
+        <setting id="status" type="action" label="32036" help="32037">
+          <level>0</level>
+          <data>RunScript(special://home/addons/service.atmos67/status.py)</data>
+          <control type="button" format="action">
+            <close>true</close>
+          </control>
+        </setting>
+        <setting id="dante" type="action" label="32038" help="32039">
+          <level>0</level>
+          <data>RunScript(special://home/addons/service.atmos67/dante.py)</data>
+          <control type="button" format="action">
+            <close>true</close>
+          </control>
+        </setting>
+      </group>
+    </category>
+    <category id="bass" label="32004">
+      <group id="1">
+        <setting id="mode" type="integer" label="32050" help="32051">
+          <level>0</level>
+          <default>0</default>
+          <constraints>
+            <options>
+              <option label="32052">0</option>
+              <option label="32053">1</option>
+              <option label="32054">2</option>
+            </options>
+          </constraints>
+          <control type="list" format="string">
+            <heading>32050</heading>
+          </control>
+        </setting>
+        <setting id="subs" type="integer" label="32055" help="32056">
+          <level>0</level>
+          <default>1</default>
+          <constraints>
+            <minimum>0</minimum>
+            <step>1</step>
+            <maximum>8</maximum>
+          </constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="slope" type="string" label="32057" help="32058">
+          <level>0</level>
+          <default>24</default>
+          <constraints>
+            <options>
+              <option>12</option>
+              <option>24</option>
+            </options>
+          </constraints>
+          <control type="list" format="string">
+            <heading>32057</heading>
+          </control>
+        </setting>
+        <setting id="xo_front" type="integer" label="32060" help="32065">
+          <level>0</level>
+          <default>80</default>
+          <constraints>
+            <minimum>0</minimum>
+            <step>10</step>
+            <maximum>250</maximum>
+          </constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="xo_center" type="integer" label="32061" help="32065">
+          <level>0</level>
+          <default>80</default>
+          <constraints>
+            <minimum>0</minimum>
+            <step>10</step>
+            <maximum>250</maximum>
+          </constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="xo_surround" type="integer" label="32062" help="32065">
+          <level>0</level>
+          <default>80</default>
+          <constraints>
+            <minimum>0</minimum>
+            <step>10</step>
+            <maximum>250</maximum>
+          </constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="xo_back" type="integer" label="32063" help="32065">
+          <level>0</level>
+          <default>80</default>
+          <constraints>
+            <minimum>0</minimum>
+            <step>10</step>
+            <maximum>250</maximum>
+          </constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="xo_top" type="integer" label="32064" help="32065">
+          <level>0</level>
+          <default>80</default>
+          <constraints>
+            <minimum>0</minimum>
+            <step>10</step>
+            <maximum>250</maximum>
+          </constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="levels" type="action" label="32066" help="32067">
+          <level>0</level>
+          <data>RunScript(special://home/addons/service.atmos67/levels.py)</data>
+          <control type="button" format="action">
+            <close>true</close>
+          </control>
+        </setting>
+      </group>
+    </category>
+    <category id="calibration" label="32005">
+      <group id="1">
+        <setting id="microphone" type="string" label="32070" help="32071">
+          <level>0</level>
+          <default>plughw:1,0</default>
+          <control type="edit" format="string">
+            <heading>32070</heading>
+          </control>
+        </setting>
+        <setting id="mic_cal" type="path" label="32072" help="32073">
+          <level>0</level>
+          <default/>
+          <constraints>
+            <writable>false</writable>
+            <masking>.txt|.cal|.frd</masking>
+            <allowempty>true</allowempty>
+          </constraints>
+          <control type="button" format="file">
+            <heading>32072</heading>
+          </control>
+        </setting>
+        <setting id="positions" type="integer" label="32074" help="32075">
+          <level>0</level>
+          <default>3</default>
+          <constraints>
+            <minimum>1</minimum>
+            <step>1</step>
+            <maximum>9</maximum>
+          </constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="calibrate" type="action" label="32076" help="32077">
+          <level>0</level>
+          <data>RunScript(special://home/addons/service.atmos67/calibrate.py)</data>
+          <control type="button" format="action">
+            <close>true</close>
+          </control>
+        </setting>
+      </group>
+    </category>
+    <category id="volume" label="32006">
+      <group id="1">
+        <setting id="max_volume_db" type="integer" label="32080" help="32081">
+          <level>0</level>
+          <default>0</default>
+          <constraints>
+            <minimum>-30</minimum>
+            <step>1</step>
+            <maximum>12</maximum>
+          </constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+      </group>
+    </category>
+    <category id="sync" label="32007">
+      <group id="1">
+        <setting id="auto_av_offset" type="boolean" label="32090" help="32091">
+          <level>0</level>
+          <default>true</default>
+          <control type="toggle"/>
+        </setting>
+        <setting id="receiver_latency_ms" type="integer" label="32092" help="32093">
+          <level>0</level>
+          <default>5</default>
+          <constraints>
+            <minimum>0</minimum>
+            <step>1</step>
+            <maximum>500</maximum>
+          </constraints>
+          <control type="edit" format="integer">
+            <heading>32092</heading>
+          </control>
+        </setting>
+        <setting id="av_trim_ms" type="integer" label="32094" help="32095">
+          <level>0</level>
+          <default>0</default>
+          <constraints>
+            <minimum>-500</minimum>
+            <step>1</step>
+            <maximum>500</maximum>
+          </constraints>
+          <control type="edit" format="integer">
+            <heading>32094</heading>
+          </control>
+        </setting>
+      </group>
+    </category>
+    <category id="kodi" label="32003">
+      <group id="1">
+        <setting id="use_as_output" type="action" label="32030" help="32031">
+          <level>0</level>
+          <data>RunScript(special://home/addons/service.atmos67/audio.py)</data>
+          <control type="button" format="action">
+            <close>true</close>
+          </control>
+        </setting>
+      </group>
+    </category>
+  </section>
+</settings>

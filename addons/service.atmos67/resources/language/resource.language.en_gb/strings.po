@@ -1,0 +1,465 @@
+# Kodi Media Center language file
+# Addon Name: atmos67
+# Addon id: service.atmos67
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_GB\n"
+
+msgctxt "#32001"
+msgid "Speakers"
+msgstr ""
+
+msgctxt "#32002"
+msgid "AES67 network"
+msgstr ""
+
+msgctxt "#32003"
+msgid "Kodi"
+msgstr ""
+
+msgctxt "#32010"
+msgid "Speaker layout"
+msgstr ""
+
+msgctxt "#32011"
+msgid "Speaker layout of the room. Positions and distances are left to the measured correction."
+msgstr ""
+
+
+
+msgctxt "#32020"
+msgid "Network interface"
+msgstr ""
+
+msgctxt "#32021"
+msgid "Interface the PTP clock runs on."
+msgstr ""
+
+msgctxt "#32022"
+msgid "Multicast address of the first stream"
+msgstr ""
+
+msgctxt "#32023"
+msgid "Speakers are sent 8 to a stream; further streams use the following addresses."
+msgstr ""
+
+msgctxt "#32024"
+msgid "PTP domain"
+msgstr ""
+
+msgctxt "#32025"
+msgid "Must match the PTP domain of the AES67 receivers."
+msgstr ""
+
+msgctxt "#32026"
+msgid "Buffer (ms)"
+msgstr ""
+
+msgctxt "#32027"
+msgid "Audio held back before sending. Raise it if the sound drops out; compensate with Kodi's audio offset."
+msgstr ""
+
+msgctxt "#32030"
+msgid "Use atmos67 as Kodi's audio output"
+msgstr ""
+
+msgctxt "#32031"
+msgid "Selects the atmos67 device for audio and passthrough and enables passthrough of every format. Sound no longer goes to HDMI."
+msgstr ""
+
+msgctxt "#32040"
+msgid "The atmos67 package is not installed"
+msgstr ""
+
+msgctxt "#32041"
+msgid "Could not restart the atmos67 service"
+msgstr ""
+
+msgctxt "#32042"
+msgid "Kodi now plays through atmos67."
+msgstr ""
+
+msgctxt "#32043"
+msgid "These Kodi settings could not be changed:"
+msgstr ""
+
+msgctxt "#32004"
+msgid "Bass management and levels"
+msgstr ""
+
+msgctxt "#32005"
+msgid "Room correction"
+msgstr ""
+
+msgctxt "#32006"
+msgid "Volume"
+msgstr ""
+
+msgctxt "#32050"
+msgid "Correction"
+msgstr ""
+
+msgctxt "#32051"
+msgid "Off sends the speakers as rendered. Manual applies the crossovers, trims and distances set here. Measured applies the correction from the calibration wizard, with the trims added."
+msgstr ""
+
+msgctxt "#32052"
+msgid "Off"
+msgstr ""
+
+msgctxt "#32053"
+msgid "Manual"
+msgstr ""
+
+msgctxt "#32054"
+msgid "Measured"
+msgstr ""
+
+msgctxt "#32055"
+msgid "Subwoofers"
+msgstr ""
+
+msgctxt "#32056"
+msgid "The LFE and the low end of crossed-over speakers go to the subwoofers, shared equally. With none, speakers play full range and the LFE is dropped."
+msgstr ""
+
+msgctxt "#32057"
+msgid "Crossover slope (dB/octave)"
+msgstr ""
+
+msgctxt "#32058"
+msgid "Linkwitz–Riley crossovers of 12 or 24 dB per octave."
+msgstr ""
+
+msgctxt "#32060"
+msgid "Front crossover (Hz)"
+msgstr ""
+
+msgctxt "#32061"
+msgid "Center crossover (Hz)"
+msgstr ""
+
+msgctxt "#32062"
+msgid "Surround crossover (Hz)"
+msgstr ""
+
+msgctxt "#32063"
+msgid "Back crossover (Hz)"
+msgstr ""
+
+msgctxt "#32064"
+msgid "Top crossover (Hz)"
+msgstr ""
+
+msgctxt "#32065"
+msgid "0 plays these speakers full range. 80 Hz is the THX reference."
+msgstr ""
+
+msgctxt "#32066"
+msgid "Speaker levels and distances"
+msgstr ""
+
+msgctxt "#32067"
+msgid "A level trim and the distance to the main seat for each speaker. Distances become delays, except with a measured correction, which aligns the speakers itself."
+msgstr ""
+
+msgctxt "#32070"
+msgid "Microphone (ALSA device)"
+msgstr ""
+
+msgctxt "#32071"
+msgid "The USB measurement microphone, such as plughw:1,0. arecord -l lists the devices."
+msgstr ""
+
+msgctxt "#32072"
+msgid "Microphone calibration file"
+msgstr ""
+
+msgctxt "#32073"
+msgid "The calibration file that came with the microphone (UMIK-1 and others). Optional."
+msgstr ""
+
+msgctxt "#32074"
+msgid "Measuring positions"
+msgstr ""
+
+msgctxt "#32075"
+msgid "Microphone positions to measure, the first at the main seat."
+msgstr ""
+
+msgctxt "#32076"
+msgid "Start calibration"
+msgstr ""
+
+msgctxt "#32077"
+msgid "Plays a sweep from every speaker at each microphone position and designs the correction with SECS 2R. Takes several minutes; keep the room quiet."
+msgstr ""
+
+msgctxt "#32080"
+msgid "Maximum volume (dB)"
+msgstr ""
+
+msgctxt "#32081"
+msgid "The level at Kodi's 100 %. Kodi's volume spans the 60 dB below it."
+msgstr ""
+
+msgctxt "#32100"
+msgid "Room calibration"
+msgstr ""
+
+msgctxt "#32101"
+msgid "Measure from %d microphone positions? Every speaker will play a sweep in turn."
+msgstr ""
+
+msgctxt "#32102"
+msgid "The atmos67 service did not come back. Check its log."
+msgstr ""
+
+msgctxt "#32103"
+msgid "Preparing the measurement"
+msgstr ""
+
+msgctxt "#32104"
+msgid "Place the microphone at position %d of %d, at ear height, pointing up, and keep quiet."
+msgstr ""
+
+msgctxt "#32105"
+msgid "Measuring position %d"
+msgstr ""
+
+msgctxt "#32106"
+msgid "Designing the correction (several minutes)"
+msgstr ""
+
+msgctxt "#32107"
+msgid "The measured correction is now in use."
+msgstr ""
+
+msgctxt "#32108"
+msgid "Calibration failed:"
+msgstr ""
+
+msgctxt "#32110"
+msgid "Speaker levels and distances"
+msgstr ""
+
+msgctxt "#32111"
+msgid "%s   %+.1f dB   %s m"
+msgstr ""
+
+msgctxt "#32112"
+msgid "%s level trim (dB)"
+msgstr ""
+
+msgctxt "#32113"
+msgid "%s distance (m)"
+msgstr ""
+
+msgctxt "#32114"
+msgid "Could not read the speakers of the current mode."
+msgstr ""
+
+msgctxt "#32007"
+msgid "Picture sync"
+msgstr ""
+
+msgctxt "#32090"
+msgid "Delay the picture to match the sound"
+msgstr ""
+
+msgctxt "#32091"
+msgid "Sets Kodi's audio offset whenever a video starts, from the time the sound takes through atmos67, the receivers and this adjustment."
+msgstr ""
+
+msgctxt "#32092"
+msgid "Receiver latency (ms)"
+msgstr ""
+
+msgctxt "#32093"
+msgid "Time the AES67 receivers and amplifiers take, from their documentation. The calibration wizard measures it."
+msgstr ""
+
+msgctxt "#32094"
+msgid "Fine adjustment (ms)"
+msgstr ""
+
+msgctxt "#32095"
+msgid "Added to the computed delay. Raise it when the sound still comes late."
+msgstr ""
+
+msgctxt "#32109"
+msgid "Put the microphone back at the main seat to measure how late the sound arrives, for the picture sync."
+msgstr ""
+
+msgctxt "#32034"
+msgid "Streams"
+msgstr ""
+
+msgctxt "#32035"
+msgid "Which speakers go in which stream, for receivers that take only some of them. Without changes, 8 channels a stream in order."
+msgstr ""
+
+msgctxt "#32120"
+msgid "AES67 streams"
+msgstr ""
+
+msgctxt "#32121"
+msgid "Add a stream"
+msgstr ""
+
+msgctxt "#32122"
+msgid "Back to 8 channels a stream"
+msgstr ""
+
+msgctxt "#32123"
+msgid "Name: %s"
+msgstr ""
+
+msgctxt "#32124"
+msgid "Multicast address: %s"
+msgstr ""
+
+msgctxt "#32125"
+msgid "Channels: %s"
+msgstr ""
+
+msgctxt "#32126"
+msgid "Delete this stream"
+msgstr ""
+
+msgctxt "#32127"
+msgid "Stream name (shown by the receivers)"
+msgstr ""
+
+msgctxt "#32128"
+msgid "Multicast address (239.x.x.x)"
+msgstr ""
+
+msgctxt "#32129"
+msgid "Not a multicast address (224.0.0.0 to 239.255.255.255)."
+msgstr ""
+
+msgctxt "#32130"
+msgid "Channels of this stream (up to 8)"
+msgstr ""
+
+msgctxt "#32131"
+msgid "A stream carries at most %d channels."
+msgstr ""
+
+msgctxt "#32132"
+msgid "Delete this stream?"
+msgstr ""
+
+msgctxt "#32133"
+msgid "not sent: %s"
+msgstr ""
+
+msgctxt "#32036"
+msgid "Status"
+msgstr ""
+
+msgctxt "#32037"
+msgid "What the service is doing: PTP clock, streams, playback, volume and latency."
+msgstr ""
+
+msgctxt "#32140"
+msgid "atmos67 status"
+msgstr ""
+
+msgctxt "#32141"
+msgid "Service: %s"
+msgstr ""
+
+msgctxt "#32142"
+msgid "Correction: %s"
+msgstr ""
+
+msgctxt "#32143"
+msgid "The sender does not answer. It waits for the PTP clock before it starts; see the service log."
+msgstr ""
+
+msgctxt "#32144"
+msgid "PTP grandmaster: %s (domain %s)"
+msgstr ""
+
+msgctxt "#32145"
+msgid "Playing"
+msgstr ""
+
+msgctxt "#32146"
+msgid "Silent (nothing playing)"
+msgstr ""
+
+msgctxt "#32147"
+msgid "Volume: muted"
+msgstr ""
+
+msgctxt "#32148"
+msgid "Volume: %s dB"
+msgstr ""
+
+msgctxt "#32149"
+msgid "Sound held back by the sender: %s ms"
+msgstr ""
+
+msgctxt "#32150"
+msgid "Send errors: %s"
+msgstr ""
+
+msgctxt "#32151"
+msgid "Streams from %s:"
+msgstr ""
+
+msgctxt "#32038"
+msgid "Dante receivers"
+msgstr ""
+
+msgctxt "#32039"
+msgid "Finds Dante devices on the network, turns on their AES67 mode and subscribes them to a stream, as Dante Controller would."
+msgstr ""
+
+msgctxt "#32160"
+msgid "Dante receivers"
+msgstr ""
+
+msgctxt "#32161"
+msgid "Looking for Dante devices"
+msgstr ""
+
+msgctxt "#32162"
+msgid "No Dante device answered. It has to be on the same network as the Vero V."
+msgstr ""
+
+msgctxt "#32163"
+msgid "Stream to receive"
+msgstr ""
+
+msgctxt "#32164"
+msgid "First receiver channel"
+msgstr ""
+
+msgctxt "#32165"
+msgid "%s goes to %s, channels %d to %d."
+msgstr ""
+
+msgctxt "#32166"
+msgid "The Dante step failed:"
+msgstr ""
+
+msgctxt "#32167"
+msgid "Subscribe to a stream"
+msgstr ""
+
+msgctxt "#32168"
+msgid "Turn AES67 mode on"
+msgstr ""
+
+msgctxt "#32169"
+msgid "Turn AES67 mode off"
+msgstr ""
+
+msgctxt "#32170"
+msgid "Done. Reboot the Dante device for the change to take effect."
+msgstr ""

@@ -1,0 +1,161 @@
+#!/bin/sh
+# Captures what Kodi plays into the ALSA loopback, decodes it and sends the
+# speakers as AES67 streams. The sender runs for as long as the service does;
+# the capture and the decoder restart whenever Kodi reopens the loopback,
+# because the capture has to be opened in the format Kodi chose.
+#
+# The sender applies the correction MODE selects (off, manual, auto, or measure
+# for the calibration wizard) and takes the volume on its control socket.
+set -u
+
+if [ -n "${LAYOUT_FILE:-}" ]; then
+    set -- --layout-file "$LAYOUT_FILE"
+else
+    set -- --layout "$LAYOUT"
+fi
+
+# The PTP grandmaster in SDP notation (00-11-22-FF-FE-33-44-55), empty while
+# ptp4l is not answering.
+grandmaster() {
+    pmc -u -b 0 -d "$PTP_DOMAIN" 'GET PARENT_DATA_SET' 2>/dev/null \
+        | sed -n 's/.*grandmasterIdentity *//p' | tr -d . | tr a-f A-F | sed 's/../&-/g; s/-$//'
+}
+
+# The correction the sender runs, written for this layout at every start.
+run=/run/atmos67
+mkdir -p "$run"
+rm -f "$run/control"
+mode=${MODE:-off}
+if [ "$mode" = auto ] && [ ! -e "${AUTO_DESIGN:-}/secs-design.json" ]; then
+    echo "atmos67: no measured correction at ${AUTO_DESIGN:-}; sending without correction" >&2
+    mode=off
+fi
+# Each value is NAME=NUMBER with no spaces, so the words split as they should.
+extra=""
+for trim in ${TRIMS:-}; do extra="$extra --trim $trim"; done
+case "$mode" in
+    measure) extra="--subs ${SUBS:-0}" ;;
+    manual)
+        extra="$extra --subs ${SUBS:-0} --slope ${SLOPE:-24}"
+        for crossover in ${CROSSOVER:-}; do extra="$extra --crossover $crossover"; done
+        for delay in ${DELAYS:-}; do extra="$extra --delay $delay"; done
+        ;;
+    auto) extra="$extra --base $AUTO_DESIGN" ;;
+esac
+dsp=""
+if [ "$mode" != off ]; then
+    rm -rf "$run/design"
+    # shellcheck disable=SC2086
+    if atmos67 "$@" --write-design "$run/design" $extra; then
+        dsp="--dsp $run/design"
+    else
+        echo "atmos67: could not write the $mode correction; sending without correction" >&2
+    fi
+fi
+
+# Which channels go in which stream; 8 a stream in order without a plan.
+streams=""
+if [ -s "${STREAMS:-}" ]; then
+    streams="--streams $STREAMS"
+fi
+
+# The Kodi add-on, running as osmc, sets the volume and calibrates through
+# the sender's socket.
+(
+    until [ -S "$run/control" ]; do sleep 0.2; done
+    chgrp osmc "$run/control" 2>/dev/null
+    chmod 660 "$run/control"
+) &
+permissions=$!
+
+gmid=$(grandmaster)
+until [ -n "$gmid" ]; do
+    sleep 1
+    gmid=$(grandmaster)
+done
+
+# The stream descriptions name the grandmaster. When another clock takes over,
+# exit so that systemd restarts the service with the new one.
+(
+    while sleep 10; do
+        now=$(grandmaster)
+        if [ -n "$now" ] && [ "$now" != "$gmid" ]; then
+            echo "atmos67: PTP grandmaster changed from $gmid to $now" >&2
+            kill $$
+        fi
+    done
+) &
+watcher=$!
+
+# How Kodi has the loopback open: "closed", or its format, channels and rate.
+params=/proc/asound/Loopback/pcm0p/sub0/hw_params
+pidfile=/run/atmos67-arecord.pid
+rm -f "$pidfile"
+
+# The sender reads the decoded speakers from this FIFO. It is stopped by
+# ending that input: it plays out what it holds, withdraws its streams with
+# SAP deletions and exits. systemd signals only this script (KillMode=mixed).
+# A last channel marks the PCM Kodi has already set the volume of, which the
+# sender then sends without its own.
+fifo=$run/speakers
+rm -f "$fifo"
+mkfifo "$fifo"
+# shellcheck disable=SC2086
+atmos67 "$@" --aes67-send --aes67-address "$ADDRESS" --aes67-buffer-ms "$BUFFER_MS" \
+    --ptp-gmid "$gmid" --ptp-domain "$PTP_DOMAIN" \
+    --control "$run/control" --volume "${VOLUME_DB:-0}" --pcm-channel $dsp $streams < "$fifo" &
+sender=$!
+
+(
+while :; do
+    state=$(cat "$params" 2>/dev/null)
+    format=$(echo "$state" | sed -n 's/^format: //p')
+    channels=$(echo "$state" | sed -n 's/^channels: //p')
+    rate=$(echo "$state" | sed -n 's/^rate: \([0-9]*\).*/\1/p')
+    # Passthrough arrives as 16-bit stereo or, for TrueHD and DTS-HD, 8
+    # channels. What Kodi plays itself (stereo music, menu sounds) arrives as
+    # stereo PCM in 16-bit, 32-bit or float samples at the source's rate.
+    case "$format:$channels" in
+        S16_LE:2 | S16_LE:8 | S32_LE:2 | FLOAT_LE:2) ;;
+        *)
+            sleep 0.2
+            continue
+            ;;
+    esac
+    arecord -q -D hw:Loopback,1,0 -t raw -f "$format" -c "$channels" -r "$rate" \
+        --period-time=10000 --buffer-time=200000 --process-id-file "$pidfile" \
+        | atmos67 "$@" --input-channels "$channels" --input-rate "$rate" --input-format "$format" --pcm-channel &
+    while [ "$(cat "$params" 2>/dev/null)" = "$state" ] && kill -0 $! 2>/dev/null; do
+        sleep 0.2
+    done
+    # Stopping the capture ends the decoder with its input.
+    kill "$(cat "$pidfile" 2>/dev/null)" 2>/dev/null
+    wait $!
+    rm -f "$pidfile"
+done
+) > "$fifo" &
+producer=$!
+
+# On SIGTERM (systemd, or the grandmaster watcher above): stop the capture
+# loop and the capture, so the decoder ends and with it the sender's input.
+# A sender still running after 5 s (a capture started as the loop was
+# stopped) is ended without withdrawing its streams.
+# shellcheck disable=SC2329 # called by the trap
+stop() {
+    trap - TERM INT
+    kill "$producer" "$watcher" "$permissions" 2>/dev/null
+    kill "$(cat "$pidfile" 2>/dev/null)" 2>/dev/null
+    (sleep 5; kill "$sender" 2>/dev/null) &
+    guard=$!
+    wait "$sender"
+    kill "$guard" 2>/dev/null
+    exit 0
+}
+trap stop TERM INT
+
+# The sender ends on its own only when it fails; systemd then restarts it all.
+wait "$sender"
+status=$?
+kill "$producer" "$watcher" "$permissions" 2>/dev/null
+kill "$(cat "$pidfile" 2>/dev/null)" 2>/dev/null
+exit "$status"

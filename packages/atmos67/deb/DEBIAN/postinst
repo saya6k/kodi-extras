@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+if [ "$1" = configure ] && [ -d /run/systemd/system ]; then
+    modprobe snd-aloop || echo "atmos67: could not load snd-aloop; reboot to load it" >&2
+    systemctl daemon-reload
+    systemctl enable atmos67-ptp4l.service atmos67-phc2sys.service atmos67.service
+    systemctl restart atmos67-ptp4l.service atmos67-phc2sys.service atmos67.service
+fi

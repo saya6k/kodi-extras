@@ -1,0 +1,5 @@
+/etc/atmos67/atmos67.conf
+/etc/atmos67/ptp4l.conf
+/etc/alsa/conf.d/50-atmos67.conf
+/etc/modules-load.d/atmos67.conf
+/etc/modprobe.d/atmos67.conf
