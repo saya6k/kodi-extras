@@ -9,7 +9,7 @@ Kodi 애드온과, 애드온이 쓰는 OSMC(Vero V) 패키지를 모아 둔 저�
 | `script.service.threadbridge` | 802.15.4 USB 동글로 Thread 보더 라우터(OTBR)를 돌립니다. Home Assistant, Apple Home, Google Home과 함께 씁니다. | `threadbridge` | [docs/threadbridge.md](docs/threadbridge.md) |
 | `service.atmos67` | Kodi가 패스스루한 Atmos·DTS를 스피커 배치에 맞게 디코딩해 AES67 스피커로 보냅니다. | `atmos67` | [docs/atmos67.md](docs/atmos67.md) |
 
-두 애드온은 모두 설정 화면 역할이고, 실제 일은 `.deb` 패키지의 systemd 서비스가 합니다. 애드온은 설정을 `~/.kodi/userdata/addon_data/<애드온 id>/`에 쓰고 `sudo -n systemctl`로 서비스를 다시 시작합니다. OSMC의 `osmc` 사용자는 암호 없이 sudo를 쓸 수 있습니다. 패키지는 Vero V의 OSMC(Debian bullseye armhf, Kodi 21) 전용입니다.
+두 애드온은 모두 설정 화면 역할이고, 실제 일은 `.deb` 패키지의 systemd 서비스가 합니다. 애드온은 설정을 `~/.kodi/userdata/addon_data/<애드온 id>/`에 쓰고 `sudo -n systemctl`로 서비스를 다시 시작합니다. OSMC의 `osmc` 사용자는 암호 없이 sudo를 쓸 수 있습니다. 패키지는 Vero V의 OSMC(Debian bullseye armhf, Kodi 21)용입니다. threadbridge는 arm64 패키지도 있습니다.
 
 ## 설치 (OSMC)
 
