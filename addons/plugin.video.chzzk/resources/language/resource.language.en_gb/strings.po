@@ -1,0 +1,85 @@
+# Kodi Media Center language file
+# Addon Name: CHZZK
+# Addon id: plugin.video.chzzk
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+
+msgctxt "#32001"
+msgid "Account (optional)"
+msgstr ""
+
+msgctxt "#32002"
+msgid "NID_AUT cookie"
+msgstr ""
+
+msgctxt "#32003"
+msgid "The NID_AUT cookie of naver.com after logging in to chzzk.naver.com in a browser (developer tools → Application → Cookies). Leave empty to watch without logging in."
+msgstr ""
+
+msgctxt "#32004"
+msgid "NID_SES cookie"
+msgstr ""
+
+msgctxt "#32005"
+msgid "The NID_SES cookie, from the same place. Both are needed."
+msgstr ""
+
+msgctxt "#32006"
+msgid "With both cookies the followed channels appear, and age-restricted streams play for an adult-verified account. The cookies log in as you: keep them to yourself. Logging out of naver.com ends them."
+msgstr ""
+
+msgctxt "#32010"
+msgid "Popular lives"
+msgstr ""
+
+msgctxt "#32011"
+msgid "Search lives"
+msgstr ""
+
+msgctxt "#32012"
+msgid "Search channels"
+msgstr ""
+
+msgctxt "#32013"
+msgid "Followed channels"
+msgstr ""
+
+msgctxt "#32030"
+msgid "%d watching"
+msgstr ""
+
+msgctxt "#32031"
+msgid "Go to the channel"
+msgstr ""
+
+msgctxt "#32032"
+msgid "Next page"
+msgstr ""
+
+msgctxt "#32033"
+msgid "Search"
+msgstr ""
+
+msgctxt "#32040"
+msgid "The channel is not live"
+msgstr ""
+
+msgctxt "#32041"
+msgid "Age-restricted: needs the NID cookies of an adult-verified account"
+msgstr ""
+
+msgctxt "#32042"
+msgid "The NID cookies are missing or have expired"
+msgstr ""
+
+msgctxt "#32043"
+msgid "CHZZK did not answer: %s"
+msgstr ""
+
+msgctxt "#32044"
+msgid "CHZZK refused: %s"
+msgstr ""
+
