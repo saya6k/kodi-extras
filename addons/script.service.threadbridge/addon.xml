@@ -13,6 +13,6 @@
     <description lang="en_GB">Settings and network management for the threadbridge service, which runs an OpenThread border router (OTBR) on an 802.15.4 USB dongle with RCP firmware, for Home Assistant, Apple Home and Google Home. Requires the threadbridge package (.deb) to be installed on OSMC.</description>
     <description lang="ko_KR">RCP 펌웨어를 올린 802.15.4 USB 동글로 OpenThread 보더 라우터(OTBR)를 돌리는 threadbridge 서비스의 설정과 네트워크 관리입니다. Home Assistant, Apple Home, Google Home과 함께 쓸 수 있습니다. OSMC에 threadbridge 패키지(.deb)가 설치돼 있어야 합니다.</description>
     <platform>linux</platform>
-    <license>MIT</license>
+    <license>GPL-3.0-or-later</license>
   </extension>
 </addon>

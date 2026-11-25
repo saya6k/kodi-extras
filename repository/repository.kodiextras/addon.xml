@@ -13,6 +13,6 @@
     <description lang="en_GB">Installs and updates the kodi-extras add-ons, such as threadbridge.</description>
     <description lang="ko_KR">threadbridge 등 kodi-extras 애드온을 설치하고 업데이트합니다.</description>
     <platform>all</platform>
-    <license>MIT</license>
+    <license>GPL-3.0-or-later</license>
   </extension>
 </addon>
