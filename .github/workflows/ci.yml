@@ -9,18 +9,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        # 3.9 is the Python of Kodi on OSMC (Debian bullseye).
+        # 3.9 is the Python of Kodi on OSMC (Debian bullseye). The runner
+        # image has no 3.9 of its own; uv fetches it.
         python: ["3.9", "3.12"]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python }}
+      - uses: astral-sh/setup-uv@v6
       - name: Unit tests
-        run: python -m unittest discover -s tests -v
+        run: uv run --no-project --python ${{ matrix.python }} python -m unittest discover -s tests -v
       - name: Kodi repository builds
-        run: python scripts/build-repository.py https://example.org/kodi-extras
+        run: uv run --no-project --python ${{ matrix.python }} python scripts/build-repository.py https://example.org/kodi-extras
 
   lint:
     runs-on: ubuntu-latest
@@ -31,4 +31,4 @@ jobs:
           git ls-files '*.sh' 'packages/*/deb/usr/lib/*/*' 'packages/*/deb/DEBIAN/p*' 'packages/*/otbr-options' \
             'packages/*/atmos67-source' | xargs -r -n1 sh -n
       - name: XML is well-formed
-        run: git ls-files '*.xml' | xargs -r -n1 xmllint --noout
+        run: git ls-files '*.xml' | xargs -r python3 -c 'import sys, xml.dom.minidom; [xml.dom.minidom.parse(p) for p in sys.argv[1:]]'
