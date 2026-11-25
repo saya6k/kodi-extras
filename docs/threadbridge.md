@@ -44,7 +44,7 @@ docker run --rm --privileged --sysctl net.ipv6.conf.all.disable_ipv6=0 -v "$PWD"
 sudo apt install ./threadbridge_<version>_armhf.deb
 ```
 
-그다음 Kodi에서 애드온 zip을 설치합니다. 애드온 설정을 바꾸면 그 내용이 `~/.kodi/userdata/addon_data/script.service.threadbridge/threadbridge.conf`에 쓰이고 서비스가 재시작됩니다. 재시작에는 `sudo -n systemctl`을 쓰는데, OSMC의 `osmc` 사용자는 암호 없이 sudo를 쓸 수 있습니다. 패키지 기본값은 `/etc/threadbridge/threadbridge.conf`에 있습니다.
+그다음 Kodi에서 애드온을 설치합니다. kodi-extras 저장소에서 설치하거나(README의 "설치"), `scripts/package-addon.sh script.service.threadbridge`로 만든 zip을 zip 파일로 설치합니다. 애드온 설정을 바꾸면 그 내용이 `~/.kodi/userdata/addon_data/script.service.threadbridge/threadbridge.conf`에 쓰이고 서비스가 재시작됩니다. 재시작에는 `sudo -n systemctl`을 쓰는데, OSMC의 `osmc` 사용자는 암호 없이 sudo를 쓸 수 있습니다. 패키지 기본값은 `/etc/threadbridge/threadbridge.conf`에 있습니다.
 
 서비스가 켜질 때 하는 일입니다.
 

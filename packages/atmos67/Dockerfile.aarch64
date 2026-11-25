@@ -8,7 +8,7 @@ FROM rust:1.95-bookworm
 RUN apt-get update && apt-get install -y --no-install-recommends musl-tools clang libclang-dev pkg-config file xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
-# The toolchain aes67's rust-toolchain.toml pins (keep the two equal).
+# The toolchain atmos67's rust-toolchain.toml pins (keep the two equal).
 ARG RUST_TOOLCHAIN=1.100.0
 RUN rustup toolchain install ${RUST_TOOLCHAIN} --profile minimal -t aarch64-unknown-linux-musl
 

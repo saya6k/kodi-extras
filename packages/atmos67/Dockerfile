@@ -10,7 +10,7 @@ RUN sed -i '/security/d' /etc/apt/sources.list \
     && rm -rf /var/lib/apt/lists/* \
     && rustup target add armv7-unknown-linux-gnueabihf
 
-# The toolchain aes67's rust-toolchain.toml pins (keep the two equal); the image's own
+# The toolchain atmos67's rust-toolchain.toml pins (keep the two equal); the image's own
 # Rust stays for its bullseye base.
 ARG RUST_TOOLCHAIN=1.100.0
 RUN rustup toolchain install ${RUST_TOOLCHAIN} --profile minimal -c clippy -t armv7-unknown-linux-gnueabihf

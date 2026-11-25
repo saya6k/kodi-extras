@@ -1,10 +1,10 @@
 #!/bin/sh
 # Builds the OSMC (Vero V) package and the Kodi add-on into packages/atmos67/out.
-# Run it in the image built from this directory's Dockerfile, with the aes67
-# repository mounted at /aes67 (aes67-source):
+# Run it in the image built from this directory's Dockerfile, with the atmos67
+# repository mounted at /atmos67 (atmos67-source):
 #
 #   docker build -t atmos67-armhf packages/atmos67
-#   docker run --rm -v "$PWD":/work -v ~/Projects/aes67:/aes67:ro -w /work atmos67-armhf packages/atmos67/build.sh
+#   docker run --rm -v "$PWD":/work -v ~/Projects/atmos67:/atmos67:ro -w /work atmos67-armhf packages/atmos67/build.sh
 #
 # The tests run the armhf binary, so the kernel needs qemu registered for
 # 32-bit ARM (Docker Desktop has it; elsewhere
@@ -15,11 +15,11 @@ cd "$(dirname "$0")"
 version=0.1.0
 target=armv7-unknown-linux-gnueabihf
 out=out
-. ./aes67-source
+. ./atmos67-source
 
-fetch_aes67
+fetch_atmos67
 export CARGO_TARGET_DIR="$PWD/build/target" CARGO_HOME="${CARGO_HOME:-$PWD/build/cargo-home}"
-(cd "$AES67_SRC" && cargo test --release --target "$target" && cargo build --release --target "$target")
+(cd "$ATMOS67_SRC" && cargo test --release --target "$target" && cargo build --release --target "$target")
 
 # Assembled off the bind mount, where sed -i fails.
 stage=$(mktemp -d)
