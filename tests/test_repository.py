@@ -54,7 +54,7 @@ class RepositoryTest(unittest.TestCase):
         self.assertEqual(self.get(checksum).decode(), hashlib.md5(addons_xml).hexdigest())
 
         listed = {addon.get("id"): addon for addon in ET.fromstring(addons_xml)}
-        self.assertEqual(set(listed), {"repository.kodiextras", "script.service.threadbridge"})
+        self.assertEqual(set(listed), {"repository.kodiextras", "script.service.threadbridge", "service.atmos67"})
         for addon_id, entry in listed.items():
             version = entry.get("version")
             data = self.get(f"{datadir}/{addon_id}/{addon_id}-{version}.zip")
