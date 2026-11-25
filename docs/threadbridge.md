@@ -28,7 +28,7 @@ docker run --rm -v "$PWD":/work -w /work threadbridge-build packages/threadbridg
 
 빌드 머신과 아키텍처가 같으면 네이티브로, 다르면 크로스 컴파일러로 빌드합니다. 아키텍처를 빼면 armhf입니다. 둘 다 bullseye에서 빌드하므로 glibc 2.31 이상이면 돕니다. Debian 11~13과 그 위의 배포판이 해당합니다.
 
-ot-br-posix 버전과 빌드 옵션은 `packages/threadbridge/otbr-options`에 있습니다. 빌드 이미지는 bullseye의 snapshot.debian.org 저장소를 씁니다. bullseye 미러가 아카이브로 옮겨 가는 중이어서 일반 미러로는 설치가 실패하기 때문입니다.
+ot-br-posix 버전과 빌드 옵션은 `packages/threadbridge/otbr-options`에 있습니다. 패키지에 들어가는 구성 요소의 라이선스 고지(`/usr/share/doc/threadbridge/copyright`)는 빌드할 때 `copyright.sh`가 소스의 라이선스 파일로 만듭니다. 빌드 이미지는 bullseye의 snapshot.debian.org 저장소를 씁니다. bullseye 미러가 아카이브로 옮겨 가는 중이어서 일반 미러로는 설치가 실패하기 때문입니다.
 
 ## 시험
 
