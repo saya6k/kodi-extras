@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # 3.9 is the Python of Kodi on OSMC (Debian bullseye).
+        python: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Kodi repository builds
+        run: python scripts/build-repository.py https://example.org/kodi-extras
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shell syntax
+        run: |
+          git ls-files '*.sh' 'packages/*/deb/usr/lib/*/*' 'packages/*/deb/DEBIAN/p*' 'packages/*/otbr-options' \
+            'packages/*/atmos67-source' | xargs -r -n1 sh -n
+      - name: XML is well-formed
+        run: git ls-files '*.xml' | xargs -r -n1 xmllint --noout
