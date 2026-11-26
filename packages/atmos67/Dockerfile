@@ -28,6 +28,7 @@ RUN curl -fsSL https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz | tar
         --disable-avdevice --disable-avfilter --disable-swscale \
         --enable-decoder=ac3,eac3,dca \
     && make -j"$(nproc)" install \
+    && install -D -m 644 -t /opt/ffmpeg-armhf/share/doc/ffmpeg COPYING.LGPLv2.1 LICENSE.md VERSION \
     && rm -rf /tmp/ffmpeg-${FFMPEG_VERSION} \
     # ffmpeg-sys-next's Vulkan binding stub only compiles for 64-bit targets;
     # without this header it leaves the unused Vulkan bindings out.

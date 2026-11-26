@@ -1,10 +1,10 @@
 #!/bin/sh
 # Builds the OSMC (Vero V) package and the Kodi add-on into packages/atmos67/out.
-# Run it in the image built from this directory's Dockerfile, with the atmos67
-# repository mounted at /atmos67 (atmos67-source):
+# Run it in the image built from this directory's Dockerfile; it fetches the
+# atmos67 commit in atmos67-source:
 #
 #   docker build -t atmos67-armhf packages/atmos67
-#   docker run --rm -v "$PWD":/work -v ~/Projects/atmos67:/atmos67:ro -w /work atmos67-armhf packages/atmos67/build.sh
+#   docker run --rm -v "$PWD":/work -w /work atmos67-armhf packages/atmos67/build.sh
 #
 # The tests run the armhf binary, so the kernel needs qemu registered for
 # 32-bit ARM (Docker Desktop has it; elsewhere
@@ -31,6 +31,8 @@ sed -i "s/@VERSION@/$version/" "$stage/deb/DEBIAN/control"
 
 install -D -m 755 "$CARGO_TARGET_DIR/$target/release/atmos67" "$stage/deb/usr/bin/atmos67"
 arm-linux-gnueabihf-strip "$stage/deb/usr/bin/atmos67"
+mkdir -p "$stage/deb/usr/share/doc/atmos67"
+(cd "$ATMOS67_SRC" && python3 ../../copyright.py . "$target" "$stage/deb/usr/share/doc/atmos67/copyright")
 mkdir -p "$out"
 rm -f "$out"/atmos67_*_armhf.deb "$out"/service.atmos67-*.zip
 dpkg-deb --root-owner-group --build "$stage/deb" "$out/atmos67_${version}_armhf.deb"
