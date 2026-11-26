@@ -7,7 +7,7 @@ Kodi 애드온과, 애드온이 쓰는 OSMC(Vero V) 패키지를 모아 둔 저�
 | 애드온 | 하는 일 | 패키지 | 문서 |
 |---|---|---|---|
 | `script.service.threadbridge` | 802.15.4 USB 동글로 Thread 보더 라우터(OTBR)를 돌립니다. Home Assistant, Apple Home, Google Home과 함께 씁니다. | `threadbridge` | [docs/threadbridge.md](docs/threadbridge.md) |
-| `service.atmos67` | Kodi가 패스스루한 Atmos·DTS를 스피커 배치에 맞게 디코딩해 AES67 스피커로 보냅니다. 아직 Kodi 저장소와 Releases에는 없습니다(아래 "라이선스"). | `atmos67` | [docs/atmos67.md](docs/atmos67.md) |
+| `service.atmos67` | Kodi가 패스스루한 Atmos·DTS를 스피커 배치에 맞게 디코딩해 AES67 스피커로 보냅니다. | `atmos67` | [docs/atmos67.md](docs/atmos67.md) |
 | `plugin.video.chzzk` | 치지직의 라이브와 동영상을 봅니다. | 없음 | [docs/chzzk.md](docs/chzzk.md) |
 
 threadbridge와 atmos67은 설정 화면 역할이고, 실제 일은 `.deb` 패키지의 systemd 서비스가 합니다. 애드온은 설정을 `~/.kodi/userdata/addon_data/<애드온 id>/`에 쓰고 `sudo -n systemctl`로 서비스를 다시 시작합니다. OSMC의 `osmc` 사용자는 암호 없이 sudo를 쓸 수 있습니다. 패키지는 Vero V의 OSMC(Debian bullseye armhf, Kodi 21)용입니다. threadbridge는 arm64 패키지도 있습니다. 치지직 플러그인은 Python만으로 돌아서 패키지가 필요 없고, Kodi가 도는 곳이면 어디서나 씁니다.
@@ -33,7 +33,7 @@ kodi-extras/
 │   └── service.atmos67/
 ├── packages/                    # 애드온이 쓰는 OSMC 패키지(.deb)의 빌드
 │   ├── threadbridge/            #   ot-br-posix를 받아 빌드
-│   └── atmos67/                 #   ~/Projects/atmos67의 커밋을 받아 빌드
+│   └── atmos67/                 #   atmos67 저장소의 커밋을 받아 빌드
 ├── repository/                  # Kodi 저장소 애드온과 수록 목록(addons.txt)
 ├── scripts/                     # 애드온 zip, 저장소 빌드
 ├── tests/                       # 애드온·저장소 단위 시험, integration/은 통합 시험
@@ -71,12 +71,12 @@ scripts/build-repository.py https://<배포 주소>
 scripts/release-package.sh threadbridge   # → 릴리스 threadbridge-v<버전>에 out/의 .deb를 올림
 ```
 
-버전은 그 패키지의 `build.sh`의 `version=`입니다. 릴리스가 없으면 만들고, 같은 이름의 파일은 바꿔 올립니다. atmos67은 로컬의 atmos67 저장소에서 빌드하므로 CI가 아니라 이 스크립트로 올립니다.
+버전은 그 패키지의 `build.sh`의 `version=`입니다. 릴리스가 없으면 만들고, 같은 이름의 파일은 바꿔 올립니다. 빌드에 시간이 오래 걸려서 CI가 아니라 이 스크립트로 올립니다.
 
 ## 라이선스
 
 이 저장소의 코드(애드온, 패키징, 스크립트)는 GPL-3.0-or-later입니다. 자유 소프트웨어이므로 자유 소프트웨어 재단이 공표한 GNU General Public License 버전 3 또는 (선택에 따라) 그 이후 버전의 조건에 따라 재배포하거나 수정할 수 있습니다. 보증은 없습니다. 원문은 [LICENSE](LICENSE)에 있습니다. 패키지에 들어가는 프로그램은 각자의 라이선스를 따릅니다.
 
 - **threadbridge**: ot-br-posix와 OpenThread(BSD-3-Clause), Mbed TLS(Apache-2.0), cJSON과 cpp-httplib(MIT)가 들어 있습니다. 고지는 패키지의 `/usr/share/doc/threadbridge/copyright`에 있습니다. 빌드할 때 소스의 라이선스 파일로 만듭니다(`packages/threadbridge/copyright.sh`).
-- **atmos67**: atmos67은 GPL-3.0-only이고, SECS 2R(AGPL-3.0-only)과 FFmpeg(LGPL)이 정적으로 들어 있습니다. 그래서 `.deb`를 배포하려면 atmos67의 소스도 함께 공개해야 합니다. 소스 저장소를 공개하기 전까지는 atmos67 패키지를 릴리스하지 않고, 패키지 없이는 쓸 수 없는 애드온도 Kodi 저장소(`repository/addons.txt`)에서 빼 둡니다.
+- **atmos67**: atmos67은 GPL-3.0-only이고, SECS 2R(AGPL-3.0-only)과 FFmpeg(LGPL)이 정적으로 들어 있습니다. 그래서 `.deb`를 배포할 때 소스도 공개합니다. atmos67의 소스는 [saya6k/atmos67](https://github.com/saya6k/atmos67)에 있습니다. 패키지의 `/usr/share/doc/atmos67/copyright`에는 빌드한 소스 커밋과 바이너리에 들어간 FFmpeg, Rust 크레이트 각각의 라이선스가 들어 있습니다. 빌드할 때 그 소스로 만듭니다(`packages/atmos67/copyright.py`).
 - **치지직 플러그인**: 서드파티 코드가 없습니다.

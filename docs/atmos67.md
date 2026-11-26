@@ -10,15 +10,15 @@ Kodi ─> ALSA 루프백 ─> atmos67 ─> atmos67 --aes67-send ─> AES67 (RTP)
 - `packages/atmos67`: OSMC(Vero V, Debian bullseye armhf)용 `.deb`. `atmos67` 바이너리와 서비스 세 개(`atmos67`, `atmos67-ptp4l`, `atmos67-phc2sys`), ALSA 루프백 설정이 들어 있습니다.
 - `addons/service.atmos67`: Kodi 애드온. 스피커 배치, 네트워크, 스트림 구성, 베이스 매니지먼트·레벨, 룸 보정 마법사, 영상 동기, Dante 수신기 연결을 맡습니다. Kodi의 볼륨도 송출기로 넘깁니다.
 
-atmos67 자체는 atmos67 저장소(`~/Projects/atmos67`, 원격 없음)에서 개발합니다. 지원하는 포맷, 보정, 성능, 확인한 것과 확인하지 못한 것은 그 저장소의 README가 기준입니다. 특히 "OSMC (Vero V) 패키지" 절을 봅니다. 이 문서는 kodi-extras에서 빌드하고 설치하는 방법만 다룹니다.
+atmos67 자체는 atmos67 저장소([saya6k/atmos67](https://github.com/saya6k/atmos67))에서 개발합니다. 지원하는 포맷, 보정, 성능, 확인한 것과 확인하지 못한 것은 그 저장소의 README가 기준입니다. 특히 "OSMC (Vero V) 패키지" 절을 봅니다. 이 문서는 kodi-extras에서 빌드하고 설치하는 방법만 다룹니다.
 
 ## 빌드
 
-패키지는 atmos67 저장소의 커밋 하나를 꺼내 빌드합니다. 그 커밋은 `packages/atmos67/atmos67-source`의 `ATMOS67_REV`입니다. 저장소를 읽기 전용으로 마운트하고 `git archive`로 꺼내므로, 커밋하지 않은 변경은 패키지에 들어가지 않습니다. atmos67 저장소에서 고친 것을 넣으려면 그쪽에서 커밋한 뒤 `ATMOS67_REV`를 바꿉니다.
+패키지는 atmos67 저장소의 커밋 하나를 꺼내 빌드합니다. 그 커밋은 `packages/atmos67/atmos67-source`의 `ATMOS67_REV`입니다. 빌드할 때 GitHub에서 그 커밋을 받아 옵니다. atmos67 저장소에서 고친 것을 넣으려면 그쪽에서 커밋하고 푸시한 뒤 `ATMOS67_REV`를 바꿉니다. 아직 푸시하지 않은 커밋으로 빌드하려면 로컬 저장소를 마운트하고 `ATMOS67_REPO`로 가리킵니다(`-v ~/Projects/atmos67:/atmos67:ro -e ATMOS67_REPO=/atmos67`). 이때도 커밋하지 않은 변경은 들어가지 않습니다.
 
 ```sh
 docker build -t atmos67-armhf packages/atmos67
-docker run --rm -v "$PWD":/work -v ~/Projects/atmos67:/atmos67:ro -w /work atmos67-armhf packages/atmos67/build.sh
+docker run --rm -v "$PWD":/work -w /work atmos67-armhf packages/atmos67/build.sh
 # → packages/atmos67/out/atmos67_<버전>_armhf.deb, service.atmos67-<버전>.zip
 ```
 
@@ -28,7 +28,7 @@ docker run --rm -v "$PWD":/work -v ~/Projects/atmos67:/atmos67:ro -w /work atmos
 
 ```sh
 docker build -t atmos67-aarch64 -f packages/atmos67/Dockerfile.aarch64 packages/atmos67
-docker run --rm -v "$PWD":/work -v ~/Projects/atmos67:/atmos67:ro -w /work atmos67-aarch64 packages/atmos67/build-aarch64.sh
+docker run --rm -v "$PWD":/work -w /work atmos67-aarch64 packages/atmos67/build-aarch64.sh
 # → packages/atmos67/out/atmos67-<버전>-aarch64
 ```
 
@@ -51,13 +51,15 @@ python3 -m unittest tests/test_atmos67.py
 
 ## 설치 (OSMC)
 
+[Releases](https://github.com/saya6k/kodi-extras/releases)에서 `atmos67_<버전>_armhf.deb`를 받아 설치합니다.
+
 ```sh
 sudo apt install ./atmos67_<버전>_armhf.deb   # alsa-utils, linuxptp, ethtool을 함께 설치합니다.
 ```
 
 패키지는 `snd-aloop` 모듈을 올리고 서비스 세 개를 켭니다. 그다음 Kodi에서 다음 순서로 진행합니다.
 
-1. 빌드에서 나온 `service.atmos67-<버전>.zip`을 zip 파일로 설치합니다. atmos67 소스를 공개하기 전까지는 패키지를 릴리스하지 않으므로, 애드온도 kodi-extras 저장소에 넣지 않았습니다.
+1. kodi-extras 저장소에서 atmos67 애드온을 설치합니다(README의 "설치"). 빌드에서 나온 `service.atmos67-<버전>.zip`을 zip 파일로 설치해도 됩니다.
 2. 애드온 설정에서 스피커 배치, 네트워크 인터페이스, 멀티캐스트 주소, PTP 도메인을 고릅니다. 바꾸면 서비스가 다시 시작됩니다.
 3. 애드온 설정의 "Kodi 오디오 출력을 atmos67로 설정"을 실행합니다. 오디오 출력과 패스스루 장치가 `atmos67 (AES67)`로 바뀌고 패스스루가 켜집니다. 장치가 목록에 보이려면 Kodi를 다시 시작해야 할 수 있습니다.
 
@@ -65,4 +67,4 @@ sudo apt install ./atmos67_<버전>_armhf.deb   # alsa-utils, linuxptp, ethtool�
 
 ## 라이선스
 
-atmos67은 GPL-3.0-only입니다. 패키지의 바이너리에는 FFmpeg(LGPL)와 SECS 2R(AGPL-3.0-only)이 정적으로 들어 있습니다. 그래서 `.deb`를 배포할 때는 두 라이선스의 조건도 따라야 합니다. 자세한 내용은 atmos67 저장소 README의 "알아 둘 것"에 있습니다.
+atmos67은 GPL-3.0-only입니다. 패키지의 바이너리에는 FFmpeg(LGPL)와 SECS 2R(AGPL-3.0-only)이 정적으로 들어 있습니다. 그래서 `.deb`를 배포할 때는 두 라이선스의 조건도 따라야 합니다. 패키지의 `/usr/share/doc/atmos67/copyright`에 소스 위치와 함께 들어간 구성 요소 각각의 라이선스가 있습니다. 자세한 내용은 atmos67 저장소 README의 "알아 둘 것"에 있습니다.
